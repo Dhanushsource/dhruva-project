@@ -1,0 +1,24 @@
+{
+  "dataset": "synthetic development dataset",
+  "selected_model": "decision_tree",
+  "models": {
+    "decision_tree": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "random_forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "knn": {
+      "accuracy": 0.5,
+      "precision": 0.4166666666666667,
+      "recall": 0.5,
+      "f1": 0.4444444444444444
+    }
+  }
+}

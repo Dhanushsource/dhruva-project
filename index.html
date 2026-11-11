@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">✦</span><span>career compass <b>ai</b></span></div>
+            <div class="profile-mini">
+                <div class="avatar">DN</div>
+                <div><strong>Dhruva N S</strong><span>Class 12 · Science</span></div><span class="status-dot"></span></div>
+            <nav class="nav-list" aria-label="Primary navigation">
+                <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Overview</button>
+                <button class="nav-item" data-view="student-login"><span class="nav-icon">→</span>Student login</button>
+                <button class="nav-item" data-view="student-profile"><span class="nav-icon">●</span>Student profile</button>
+                <button class="nav-item" data-view="explore"><span class="nav-icon">⌕</span>Explore careers</button>
+                <button class="nav-item" data-view="assessment"><span class="nav-icon">✎</span>My assessment</button>
+                <button class="nav-item" data-view="roadmap"><span class="nav-icon">↗</span>My roadmap</button>
+                <button class="nav-item" data-view="saved"><span class="nav-icon">♡</span>Saved careers <em id="nav-saved-career-count">0</em></button>
+                <p class="nav-group-label">Career research</p>
+                <button class="nav-item" data-view="domains"><span class="nav-icon">◈</span>Career domains</button>
+                <button class="nav-item" data-view="streams"><span class="nav-icon">≋</span>Streams</button>
+                <button class="nav-item" data-view="courses"><span class="nav-icon">▤</span>Courses</button>
+                <button class="nav-item" data-view="college-finder"><span class="nav-icon">⌕</span>College &amp; fee finder</button>
+                <button class="nav-item" data-view="specializations"><span class="nav-icon">✦</span>Specializations</button>
+                <button class="nav-item" data-view="eligibility"><span class="nav-icon">✓</span>Eligibility criteria</button>
+                <button class="nav-item" data-view="entrance-exams"><span class="nav-icon">⌁</span>Entrance examinations</button>
+                <button class="nav-item" data-view="skills"><span class="nav-icon">⚙</span>Required skills</button>
+                <button class="nav-item" data-view="higher-education"><span class="nav-icon">⌂</span>Higher education</button>
+                <button class="nav-item" data-view="scholarships"><span class="nav-icon">₹</span>Scholarships &amp; Abroad</button>
+                <button class="nav-item" data-view="career-scope"><span class="nav-icon">↗</span>Career scope</button>
+                <button class="nav-item" data-view="job-opportunities"><span class="nav-icon">▣</span>Job opportunities</button>
+                <button class="nav-item" data-view="salary-expectations"><span class="nav-icon">₹</span>Salary expectations</button>
+                <button class="nav-item" data-view="industry-trends"><span class="nav-icon">◌</span>Industry trends</button>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="mentor-card"><span class="eyebrow">YOUR NEXT STEP</span><strong>Complete your profile</strong>
+                    <p>Unlock recommendations that feel like you.</p><button class="text-button" data-view="assessment">Continue <span>→</span></button></div><button class="nav-item"><span class="nav-icon">⚙</span>Settings</button></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="mobile-brand">✦ career compass <b>ai</b></div>
+                <div class="breadcrumb">Workspace / <strong>Overview</strong></div>
+                <div class="top-actions"><button class="icon-button" title="Notifications">♢<span class="notification"></span></button><button class="help-button">Need help? <b>Ask Compass</b> <span>↗</span></button>
+                    <div class="avatar small">DN</div>
+                </div>
+            </header>
+
+            <section class="view active-view" id="overview">
+                <div class="page-intro">
+                    <div>
+                        <p class="kicker">TUESDAY, 25 AUGUST 2026</p>
+                        <h1>Good morning, Dhruva<span class="accent">.</span></h1>
+                        <p class="subhead">One place to compare courses, careers and next steps after Class 10 or 12.</p>
+                    </div><button class="primary-button" data-view="assessment"><span>✦</span> Refine my recommendations</button></div>
+                <div class="hero-panel">
+                    <div class="hero-copy"><span class="pill bright">✦ CAREER GUIDANCE · PROFILE-BASED</span>
+                        <h2>See more possibilities.<br><i>Choose with clarity.</i></h2>
+                        <p>Explore medicine, engineering, commerce, arts, law, design, agriculture and emerging fields. Compare courses, exams, skills and career scope in one place.</p><button class="light-button" data-view="explore">Explore your matches <span>→</span></button></div>
+                    <div class="orbit-graphic">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                        <div class="orbit-core">✦</div><span class="orbit-label label-one">Build</span><span class="orbit-label label-two">Solve</span><span class="orbit-label label-three">Impact</span></div>
+                </div>
+                <div class="section-heading">
+                    <div>
+                        <p class="kicker">YOUR SNAPSHOT</p>
+                        <section class="project-summary" aria-labelledby="project-summary-title">
+                            <p class="kicker">WHY CAREER COMPASS</p>
+                            <h3 id="project-summary-title">Clear guidance should be easier to reach.</h3>
+                            <p>After Class 10 or 12, students often have to piece together course, entrance-exam and career information from many places. Career Compass brings these choices together in simple comparisons and profile-based suggestions, helping
+                                students explore options even when personal career counselling is hard to access.</p>
+                        </section>
+                        <h3>A little clarity goes a long way</h3>
+                    </div><button class="link-button" data-view="assessment">View full assessment <span>→</span></button></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-icon coral">◌</span>
+                        <div><strong id="profile-completion-stat">0%</strong><span>Profile completed</span></div>
+                        <div class="progress"><i style="width:82%"></i></div>
+                    </div>
+                    <div class="stat-card"><span class="stat-icon green">⌁</span>
+                        <div><strong id="career-match-count">0</strong><span>Career matches</span></div>
+                        <div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="stat-card"><span class="stat-icon yellow">⌖</span>
+                        <div><strong id="saved-career-count">0</strong><span>Saved for later</span></div><a href="#" class="stat-link" data-view="saved">Review list →</a></div>
+                </div>
+                <div class="section-heading matches-heading">
+                    <div>
+                        <p class="kicker">BASED ON YOUR PROFILE</p>
+                        <h3>Matches worth exploring</h3>
+                    </div><button class="filter-button">All fields <span>⌄</span></button></div>
+                <div class="career-grid" id="recommendation-grid"></div>
+            </section>
+
+            <section class="view" id="student-login">
+                <div class="auth-layout">
+                    <div class="auth-intro">
+                        <p class="kicker">STUDENT ACCESS</p>
+                        <h1>Your next step starts <i>here.</i></h1>
+                        <p class="subhead">Sign in to access your profile, saved careers, assessment and personalised recommendations.</p>
+                        <div class="auth-points"><span>✓ Your profile stays connected</span><span>✓ Recommendations follow your progress</span><span>✓ Secure account access</span></div>
+                    </div>
+                    <form class="auth-card" id="student-login-form">
+                        <div class="auth-card-heading"><span class="career-symbol blue">→</span>
+                            <div>
+                                <h2>Student login</h2>
+                                <p>Use your registered email and password.</p>
+                            </div>
+                        </div>
+                        <label>Student login ID<input name="email" type="email" autocomplete="username" placeholder="student@example.com" required></label>
+                        <label>Password<input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></label>
+                        <button class="primary-button auth-submit" type="submit">Sign in <span>→</span></button>
+                        <p class="auth-message" id="login-message" role="status"></p>
+                        <button class="auth-switch" type="button" data-auth-mode="register">New student? Create your login</button>
+                    </form>
+                    <form class="auth-card register-card" id="student-register-form" hidden>
+                        <div class="auth-card-heading"><span class="career-symbol green">+</span>
+                            <div>
+                                <h2>Create student login</h2>
+                                <p>Enter your details to create an account.</p>
+                            </div>
+                        </div>
+                        <label>Full name<input name="name" type="text" autocomplete="name" placeholder="Enter your full name" required></label>
+                        <label>Student login ID<input name="email" type="email" autocomplete="username" placeholder="student@example.com" required></label>
+                        <div class="auth-inline-fields"><label>Current stage<select name="education_level" required><option value="">Select current stage</option><option>Class 10</option><option>Class 11</option><option>Class 12 / PUC</option><option>Undergraduate</option><option>Degree completed</option></select></label><label>Stream or pathway<select name="stream" required><option value="">Select stream or pathway</option><option>Science</option><option>Commerce</option><option>Humanities / Arts</option><option>Diploma / Polytechnic</option><option>ITI / Skill trade</option><option>Agriculture</option><option>Forestry &amp; Environmental Science</option><option>Business &amp; Management</option><option>Law &amp; Public Policy</option><option>Vocational</option></select></label></div>
+                        <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required></label>
+                        <label>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Re-enter your password" required></label>
+                        <button class="primary-button auth-submit" type="submit">Create student account <span>→</span></button>
+                        <p class="auth-message" id="register-message" role="status"></p>
+                        <button class="auth-switch" type="button" data-auth-mode="login">Already registered? Sign in</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="view" id="student-profile">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">YOUR PERSONAL COMPASS</p>
+                        <h1>Student <i>profile.</i></h1>
+                        <p class="subhead">Keep your personal and educational details up to date so your career guidance stays relevant.</p>
+                    </div>
+                    <span class="profile-status"><span></span>Private profile</span>
+                </div>
+                <form class="student-profile-form" id="student-profile-form">
+                    <div class="profile-form-section">
+                        <div class="profile-section-heading"><span class="step-number">01</span>
+                            <div>
+                                <h3>Personal details</h3>
+                                <p>Tell us how to address you and how to reach you.</p>
+                            </div>
+                        </div>
+                        <div class="profile-fields">
+                            <label>Full name<input name="fullName" type="text" placeholder="Enter your full name" required></label>
+                            <label>Date of birth<input name="dateOfBirth" type="date"></label>
+                            <label>Gender<select name="gender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Non-binary</option></select></label>
+                            <label>Email address<input name="email" type="email" placeholder="you@example.com"></label>
+                            <label>Phone number<input name="phone" type="tel" placeholder="Your mobile number"></label>
+                            <label>City / location<input name="location" type="text" placeholder="Where do you study or live?"></label>
+                        </div>
+                    </div>
+                    <div class="profile-form-section">
+                        <div class="profile-section-heading"><span class="step-number">02</span>
+                            <div>
+                                <h3>Educational details</h3>
+                                <p>These details help us filter relevant courses and entrance routes.</p>
+                            </div>
+                        </div>
+                        <div class="profile-fields">
+                            <label>Current standard<select name="standard" required><option value="">Select current stage</option><option>Class 10</option><option>Class 11</option><option>Class 12 / PUC</option><option>Diploma / Polytechnic</option><option>ITI / Skill trade</option><option>Undergraduate</option><option>Degree completed</option></select></label>
+                            <label>Academic stream or pathway<select name="stream"><option value="">Select stream or pathway</option><option>Science - PCM</option><option>Science - PCB</option><option>Science - PCMB</option><option>Commerce</option><option>Humanities / Arts</option><option>Diploma / Polytechnic</option><option>ITI / Skill trade</option><option>Agriculture</option><option>Forestry &amp; Environmental Science</option><option>Business &amp; Management</option><option>Law &amp; Public Policy</option><option>Vocational</option></select></label>
+                            <label>Board / curriculum<input name="board" type="text" placeholder="CBSE, ICSE, State board..."> </label>
+                            <label>School / college<input name="institution" type="text" placeholder="Enter institution name"></label>
+                            <label>Expected completion year<select name="completionYear"><option value="">Select year</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option></select></label>
+                            <label>Preferred study location<input name="studyLocation" type="text" placeholder="India, abroad, or a city"></label>
+                        </div>
+                    </div>
+                    <div class="profile-form-section">
+                        <div class="profile-section-heading"><span class="step-number">03</span>
+                            <div>
+                                <h3>Subjects and goals</h3>
+                                <p>Choose the areas you want your recommendations to consider.</p>
+                            </div>
+                        </div>
+                        <div class="profile-fields profile-fields-wide">
+                            <label>Favourite subjects<input name="subjects" type="text" placeholder="Mathematics, biology, economics..." ></label>
+                            <label>Career goal<input name="careerGoal" type="text" placeholder="What would you like to explore?"></label>
+                        </div>
+                        <button class="primary-button profile-submit" type="submit">Save student profile <span>→</span></button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="view" id="explore">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">THE CAREER LIBRARY</p>
+                        <h1>Find your <i>field.</i></h1>
+                        <p class="subhead">Explore 120+ pathways, from familiar choices to the careers shaping tomorrow.</p>
+                    </div>
+                </div>
+                <div class="explore-toolbar">
+                    <div class="search-box">⌕ <input id="career-search" placeholder="Search careers, skills or subjects..."></div>
+                    <div class="filter-chips"><button class="chip active">All careers</button><button class="chip">Technology</button><button class="chip">Healthcare</button><button class="chip">Business</button></div>
+                </div>
+                <div class="career-grid explore-grid" id="explore-grid"></div>
+            </section>
+
+            <section class="view" id="assessment">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">YOUR PERSONAL COMPASS</p>
+                        <h1>Make the signal <i>clearer.</i></h1>
+                        <p class="subhead">Tell us what makes you curious. There are no wrong answers.</p>
+                    </div>
+                </div>
+                <div class="assessment-layout">
+                    <form class="assessment-form" id="assessment-form">
+                        <div class="form-step"><span class="step-number">01</span>
+                            <div>
+                                <h3>Where are you right now?</h3>
+                                <p>We use this to make your options relevant.</p><label>Current stage<select name="educationLevel"><option>Class 12 / PUC</option><option>Class 10</option><option>Diploma / Polytechnic</option><option>ITI / Skill trade</option><option>Undergraduate</option><option>Degree completed</option></select></label></div>
+                        </div>
+                        <div class="form-step"><span class="step-number">02</span>
+                            <div>
+                                <h3>What pulls your attention?</h3>
+                                <p>Choose up to three subjects you enjoy.</p>
+                                <div class="choice-grid"><label class="choice selected"><input type="checkbox" name="subjects" value="Mathematics" checked>Mathematics</label><label class="choice selected"><input type="checkbox" name="subjects" value="Computer Science" checked>Computer Science</label>
+                                    <label class="choice"><input type="checkbox" name="subjects" value="Biology">Biology</label>
+                                    <label class="choice"><input type="checkbox" name="subjects" value="Economics">Economics</label><label class="choice"><input type="checkbox" name="subjects" value="Design">Design</label><label class="choice"><input type="checkbox" name="subjects" value="Physics">Physics</label></div>
+                            </div>
+                        </div>
+                        <div class="form-step"><span class="step-number">03</span>
+                            <div>
+                                <h3>How do you like to work?</h3>
+                                <p>Pick the qualities that sound most like you.</p>
+                                <div class="choice-grid"><label class="choice"><input type="checkbox" name="workPreference" value="Creating things">Creating things</label><label class="choice selected"><input type="checkbox" name="workPreference" value="Solving puzzles" checked>Solving puzzles</label>
+                                    <label class="choice"><input type="checkbox" name="workPreference" value="Helping people">Helping people</label>
+                                    <label class="choice selected"><input type="checkbox" name="workPreference" value="Learning constantly" checked>Learning constantly</label>
+                                </div><button class="primary-button submit-button" type="submit">Update my matches <span>→</span></button></div>
+                        </div>
+                        <div class="form-step">
+                            <span class="step-number">04</span>
+                            <div>
+                                <h3>Add marks and entrance results</h3>
+                                <p>Optional. These details help you review routes and official cutoff notices; they do not guarantee eligibility or admission.</p>
+                                <div class="assessment-input-grid">
+                                    <label>Class 10 result (%)<input name="class10Percent" type="number" min="0" max="100" step="0.01" placeholder="e.g. 82.5"></label>
+                                    <label>Class 12 / PUC result (%)<input name="class12Percent" type="number" min="0" max="100" step="0.01" placeholder="e.g. 78"></label>
+                                    <label>KCET rank<input name="kcetRank" type="number" min="1" step="1" placeholder="If available"></label>
+                                    <label>NEET-UG rank<input name="neetRank" type="number" min="1" step="1" placeholder="If available"></label>
+                                    <label>Admission category <select name="admissionCategory"><option value="">Prefer not to specify</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option><option>Other / state category</option></select></label>
+                                    <label>Seat type to compare <select name="seatQuota"><option value="">All / not sure</option><option>Government quota</option><option>Private quota</option><option>Management quota</option><option>NRI quota</option><option>All India Quota</option></select></label>
+                                </div>
+                                <p class="assessment-data-note">Marks, ranks and category stay in this browser. Only your selected subjects and work preferences are sent to the career recommendation API.</p>
+                            </div>
+                        </div>
+                    </form>
+                    <aside class="assessment-aside">
+                        <div class="aside-orbit">✦</div>
+                        <p class="kicker">WHY IT MATTERS</p>
+                        <h3>The better we know you, the less noise you have to sort through.</h3>
+                        <div class="aside-line"><span>✓</span>Personalised career matches</div>
+                        <div class="aside-line"><span>✓</span>Skills to build next</div>
+                        <div class="aside-line"><span>✓</span>A roadmap you can act on</div>
+                    </aside>
+                </div>
+                <section class="assessment-guidance" id="assessment-guidance" aria-live="polite" hidden></section>
+            </section>
+
+            <section class="view" id="roadmap">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">YOUR RECOMMENDED PATH</p>
+                        <h1>From curious to <i>capable.</i></h1>
+                        <p class="subhead">A practical starting point for your Artificial Intelligence journey.</p>
+                    </div><button class="primary-button" id="download-roadmap-button">Download roadmap <span>↓</span></button></div>
+                <div class="roadmap-panel">
+                    <div class="roadmap-header">
+                        <div><span class="pill">TOP MATCH · 94%</span>
+                            <h2>Artificial Intelligence</h2>
+                            <p>Build a strong foundation, then follow the questions that excite you.</p>
+                        </div><span class="career-symbol blue large">⌘</span></div>
+                    <div class="timeline">
+                        <div class="timeline-item done"><span class="timeline-dot">✓</span>
+                            <div><small>NOW · 0–3 MONTHS</small>
+                                <h3>Get your foundations right</h3>
+                                <p>Strengthen Python, mathematics and problem-solving through guided practice.</p><a href="#">See 6 recommended resources ↗</a></div>
+                        </div>
+                        <div class="timeline-item current"><span class="timeline-dot">02</span>
+                            <div><small>NEXT · 3–9 MONTHS</small>
+                                <h3>Make something real</h3>
+                                <p>Build two small projects that turn your curiosity into a portfolio.</p>
+                                <div class="roadmap-tags"><span>Python project</span><span>Portfolio</span></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item"><span class="timeline-dot">03</span>
+                            <div><small>THEN · 9–18 MONTHS</small>
+                                <h3>Choose your specialisation</h3>
+                                <p>Explore machine learning, computer vision or natural language processing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="domains">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">01 · EXPLORE STUDY PATHWAYS</p>
+                        <h1>Career <i>domains.</i></h1>
+                        <p class="subhead">Compare courses, typical entry routes and college examples. These institutions are examples, not rankings or endorsements.</p>
+                    </div>
+                </div>
+                <div class="methodology-grid domain-grid">
+                    <article class="domain-pathway"><span class="method-icon blue">⌘</span>
+                        <h3>Engineering &amp; computing</h3>
+                        <p><strong>Study routes</strong>B.E./B.Tech in computer science, electronics, civil, mechanical or other branches (typically 4 years); diploma routes may begin after Class 10 (often 3 years).</p>
+                        <p><strong>College examples</strong><a href="https://uvce.ac.in/" target="_blank" rel="noopener noreferrer">UVCE, Bengaluru</a>, <a href="https://www.nitk.ac.in/" target="_blank" rel="noopener noreferrer">NITK Surathkal</a>, and
+                            <a href="https://iitdh.ac.in/" target="_blank" rel="noopener noreferrer">IIT Dharwad</a>.</p>
+                        <p><strong>Typical entry</strong>Class 12 subject requirements and KCET, JEE or institution-specific admission routes vary.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon green">✚</span>
+                        <h3>Medical · MBBS</h3>
+                        <p><strong>Study route</strong>MBBS is a medical degree after Class 12; it typically takes 5.5 years in India, including the compulsory internship.</p>
+                        <p><strong>College examples</strong><a href="https://bmcri.karnataka.gov.in/" target="_blank" rel="noopener noreferrer">Bangalore Medical College and Research Institute</a> and <a href="https://jssuni.edu.in/jssaher/medical-college/medical-college-home.html"
+                                target="_blank" rel="noopener noreferrer">JSS Medical College, Mysuru</a>.</p>
+                        <p><strong>Typical entry</strong>NEET-UG and counselling requirements apply. <a href="https://neet.nta.nic.in/" target="_blank" rel="noopener noreferrer">Check the official NTA portal</a>.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon coral">✚</span>
+                        <h3>B.Sc. Nursing</h3>
+                        <p><strong>Study route</strong>A four-year undergraduate nursing programme prepares students for patient care, community health and clinical practice.</p>
+                        <p><strong>College example</strong><a href="https://www.manipal.edu/" target="_blank" rel="noopener noreferrer">Manipal College of Nursing, Manipal</a>. Check current recognition and course status in the <a href="https://www.indiannursingcouncil.org/universities-offering-recognized-nursing-qualification"
+                                target="_blank" rel="noopener noreferrer">Indian Nursing Council directory</a>.</p>
+                        <p><strong>Karnataka entrance</strong><a href="https://cetonline.karnataka.gov.in/kea/ugcet2026" target="_blank" rel="noopener noreferrer">KEA UGCET/CET notices</a> describe the B.Sc. Nursing route; confirm the latest eligibility
+                            and selection rules each year.</p>
+                        <p><strong>Government vs private fees</strong>Government/KEA seats and private or management seats have different fee categories. Use the current <a href="https://cetonline.karnataka.gov.in/keawebentry456/ugcet2026/BSCNURSING_NOTI_16102026kannada.pdf"
+                                target="_blank" rel="noopener noreferrer">KEA B.Sc. Nursing 2026 fee notice</a> and confirm the seat type with the college.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon green">◌</span>
+                        <h3>Agriculture &amp; allied sciences</h3>
+                        <p><strong>Study routes</strong>B.Sc. Agriculture and horticulture degrees are typically 4 years; agricultural engineering and related options have institution-specific structures.</p>
+                        <p><strong>College examples</strong><a href="https://uasd.edu/" target="_blank" rel="noopener noreferrer">University of Agricultural Sciences, Dharwad</a> and <a href="https://uahs.edu.in/" target="_blank" rel="noopener noreferrer">Keladi Shivappa Nayaka University of Agricultural and Horticultural Sciences, Shivamogga</a>.</p>
+                        <p><strong>Karnataka entrance</strong><a href="https://cetonline.karnataka.gov.in/kea/ugcet2026" target="_blank" rel="noopener noreferrer">KEA CET (PCMB)</a> is used for farm-university admissions; farmer-quota practical tests and
+                            ICAR quota have separate current rules.</p>
+                        <p><strong>Government vs private fees</strong>Government farm-university seats follow the current KEA/university schedule. Private or NRI seats, where offered, use separate institution and quota fees. Check the <a href="https://cetonline.karnataka.gov.in/keawebentry456/ugcet2026/ugcet_2026_feesbreakupkannada.pdf"
+                                target="_blank" rel="noopener noreferrer">KEA UGCET 2026–27 fee structure</a> and university notice.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon green">◌</span>
+                        <h3>Forestry &amp; wildlife studies</h3>
+                        <p><strong>Study routes</strong>B.Sc. Forestry is typically 4 years; related paths include forest ecology, conservation, wildlife science and natural-resource management.</p>
+                        <p><strong>College example</strong><a href="https://uahs.edu.in/colleges/" target="_blank" rel="noopener noreferrer">College of Forestry, Keladi Shivappa Nayaka University of Agricultural and Horticultural Sciences</a>.</p>
+                        <p><strong>Karnataka entrance</strong>Farm-university UG admission uses <a href="https://cetonline.karnataka.gov.in/kea/ugcet2026" target="_blank" rel="noopener noreferrer">KEA CET (PCMB)</a>; ICAR quota and course-specific requirements
+                            must be checked in that year’s notice.</p>
+                        <p><strong>Government vs private fees</strong>Government university fees are published through KEA/university notices. Forestry offerings and private-seat fees are institution-specific; verify recognition, seat quota and the <a href="https://cetonline.karnataka.gov.in/keawebentry456/ugcet2026/ugcet_2026_feesbreakupkannada.pdf"
+                                target="_blank" rel="noopener noreferrer">KEA UGCET 2026–27 fee structure</a>.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon orange">◉</span>
+                        <h3>Commerce &amp; business</h3>
+                        <p><strong>Study routes</strong>B.Com. and BBA programmes are commonly 3–4 years; options include economics, accounting, finance, entrepreneurship and business analytics.</p>
+                        <p><strong>College example</strong><a href="https://dbe.iimb.ac.in/" target="_blank" rel="noopener noreferrer">IIM Bangalore BBA in Digital Business and Entrepreneurship</a>; many universities also offer B.Com. and BBA programmes.</p>
+                        <p><strong>Typical entry</strong>Many programmes accept students from different streams; check each institution's criteria.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon purple">§</span>
+                        <h3>Law &amp; public policy</h3>
+                        <p><strong>Study routes</strong>Integrated B.A. LL.B. programmes are typically 5 years after Class 12; a 3-year LL.B. is another route after an undergraduate degree.</p>
+                        <p><strong>College example</strong><a href="https://www.nls.ac.in/programme/ba-llb-hons/" target="_blank" rel="noopener noreferrer">National Law School of India University, Bengaluru</a>.</p>
+                        <p><strong>Typical entry</strong>Entrance tests and eligibility differ across law schools; confirm the current admission notice.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon coral">✦</span>
+                        <h3>Arts &amp; humanities</h3>
+                        <p><strong>Study routes</strong>B.A. programmes are commonly 3–4 years, with subjects such as English, history, economics, psychology, languages, journalism and political science.</p>
+                        <p><strong>College example</strong><a href="https://bcu.ac.in/" target="_blank" rel="noopener noreferrer">Dr. Manmohan Singh Bengaluru City University</a> lists undergraduate Arts and Visual Arts programmes; available majors differ
+                            by campus.</p>
+                        <p><strong>Career directions</strong>Research, education, media, communications, public service, policy and postgraduate study.</p>
+                    </article>
+                    <article class="domain-pathway"><span class="method-icon coral">✦</span>
+                        <h3>Design &amp; creative practice</h3>
+                        <p><strong>Study routes</strong>B.Des. programmes are often 4 years; B.F.A. and related routes vary. Areas include communication, product, interaction, textile and visual design.</p>
+                        <p><strong>College example</strong><a href="https://srishtimanipalinstitute.in/academics-overview/programs-courses/4-year-ug-professional-program/" target="_blank" rel="noopener noreferrer">Srishti Manipal Institute of Art, Design and Technology</a>.</p>
+                        <p><strong>Typical entry</strong>Some programmes ask for an aptitude test, interview or portfolio; review current course requirements.</p>
+                    </article>
+                </div>
+                <p class="method-tag domain-disclaimer">College examples are for exploration, not rankings or endorsements. Verify course availability, recognition, eligibility, fees, entrance exams and admission dates on official institution and regulator pages.</p>
+            </section>
+
+            <section class="view" id="streams">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">02 · PLAN YOUR NEXT STEP</p>
+                        <h1>Pathways after <i>school.</i></h1>
+                        <p class="subhead">Choose where you are now to compare study and training routes after Class 10, Class 12, or a degree.</p>
+                    </div>
+                </div>
+                <div class="pathway-stage-tabs" role="tablist" aria-label="Choose your education stage">
+                    <button class="pathway-stage-tab active" id="pathway-stage-after10" type="button" role="tab" aria-selected="true" aria-controls="education-pathway-grid" data-pathway-stage="after10">After Class 10</button>
+                    <button class="pathway-stage-tab" id="pathway-stage-after12" type="button" role="tab" aria-selected="false" aria-controls="education-pathway-grid" data-pathway-stage="after12">After Class 12</button>
+                    <button class="pathway-stage-tab" id="pathway-stage-after-degree" type="button" role="tab" aria-selected="false" aria-controls="education-pathway-grid" data-pathway-stage="afterDegree">After a degree</button>
+                </div>
+                <div class="methodology-grid pathway-card-grid" id="education-pathway-grid" role="tabpanel" aria-labelledby="pathway-stage-after10"></div>
+                <p class="pathway-note">Course lengths, subject eligibility, entrance exams and lateral-entry rules vary by state, institution and year. Confirm current details with official boards, exam authorities and colleges.</p>
+            </section>
+
+            <section class="view" id="courses">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">03 · COMPARE OPTIONS</p>
+                        <h1>Courses that <i>open doors.</i></h1>
+                        <p class="subhead">Compare common course routes, typical duration and the careers they can lead to. Admission rules vary by institution.</p>
+                    </div>
+                </div>
+                <div class="research-table">
+                    <div class="research-row research-head"><span>Course</span><span>Typical length</span><span>Good for</span></div>
+                    <div class="research-row"><strong>B.Tech / B.E.</strong><span>4 years</span><span>Engineering, software, core technology</span></div>
+                    <div class="research-row"><strong>B.Sc.</strong><span>3–4 years</span><span>Science, data, research and analysis</span></div>
+                    <div class="research-row"><strong>BBA</strong><span>3–4 years</span><span>Business management, marketing and entrepreneurship</span></div>
+                    <div class="research-row"><strong>B.Com.</strong><span>3–4 years</span><span>Accounting, finance, taxation and business analytics</span></div>
+                    <div class="research-row"><strong>BA / B.Des.</strong><span>3–4 years</span><span>Humanities, communication and design</span></div>
+                    <div class="research-row"><strong>Integrated BA LL.B. / BBA LL.B.</strong><span>5 years after Class 12</span><span>Law, legal practice, policy and corporate law</span></div>
+                    <div class="research-row"><strong>LL.B.</strong><span>3 years after a bachelor's degree</span><span>Legal practice and further law qualifications</span></div>
+                    <div class="research-row"><strong>B.Sc. Agriculture</strong><span>Typically 4 years</span><span>Crop science, agronomy, horticulture and agricultural research</span></div>
+                    <div class="research-row"><strong>B.Tech. Agricultural Engineering</strong><span>Typically 4 years</span><span>Farm machinery, irrigation, food systems and agri-technology</span></div>
+                    <div class="research-row"><strong>B.Sc. Forestry</strong><span>Typically 4 years</span><span>Forest ecology, conservation, wildlife and natural-resource management</span></div>
+                    <div class="research-row"><strong>B.Sc. Environmental Science</strong><span>Typically 3–4 years</span><span>Environmental monitoring, sustainability and conservation research</span></div>
+                </div>
+            </section>
+
+            <section class="view" id="college-finder">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">COLLEGES · ADMISSIONS · COSTS</p>
+                        <h1>Find colleges &amp; <i>compare costs.</i></h1>
+                        <p class="subhead">Use official directories and counselling notices to check current colleges, seat availability, ranks and fees.</p>
+                    </div>
+                </div>
+                <div class="methodology-grid college-source-grid">
+                    <article>
+                        <span class="method-icon orange">▤</span>
+                        <h3>Karnataka PU colleges</h3>
+                        <p>Search recognized Pre-University colleges and confirm available combinations, medium, admission dates and fees with the institution.</p>
+                        <a class="method-tag" href="https://dpue-pragathi.karnataka.gov.in/college_mst/College_Details" target="_blank" rel="noopener noreferrer">Karnataka PU college directory ↗</a>
+                        <a class="method-tag" href="https://pue.karnataka.gov.in/english" target="_blank" rel="noopener noreferrer">Department of Pre-University Education ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon blue">⌘</span>
+                        <h3>Karnataka engineering colleges</h3>
+                        <p>KEA publishes UGCET admission, option-entry and allotment information. Compare the same course, category, quota, round and year when reading closing ranks.</p>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/kea/" target="_blank" rel="noopener noreferrer">Karnataka Examinations Authority ↗</a>
+                        <a class="method-tag" href="https://josaa.nic.in/" target="_blank" rel="noopener noreferrer">JoSAA counselling for participating national institutes ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon green">⚙</span>
+                        <h3>Diploma &amp; polytechnic colleges</h3>
+                        <p>Check Karnataka DTE institution, admission and diploma allotment notices. DCET is used for eligible diploma-to-degree lateral-entry admissions.</p>
+                        <a class="method-tag" href="https://dtek.karnataka.gov.in/english" target="_blank" rel="noopener noreferrer">Department of Technical Education, Karnataka ↗</a>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/kea/dcet2026" target="_blank" rel="noopener noreferrer">KEA DCET admissions ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon coral">⚒</span>
+                        <h3>ITI colleges &amp; trades</h3>
+                        <p>Search ITIs and approved trades in the NCVT system. Confirm the current trade, affiliation, intake, duration and any state admission process.</p>
+                        <a class="method-tag" href="https://www.ncvtmis.gov.in/" target="_blank" rel="noopener noreferrer">NCVT MIS institution and trade information ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon purple">▤</span>
+                        <h3>Karnataka degree colleges</h3>
+                        <p>Use the state student and university systems to find colleges, then verify affiliation, course, intake, recognition and fees on the university or college website.</p>
+                        <a class="method-tag" href="https://uucms.karnataka.gov.in/" target="_blank" rel="noopener noreferrer">Karnataka UUCMS ↗</a>
+                        <a class="method-tag" href="https://aishe.gov.in/" target="_blank" rel="noopener noreferrer">All India Survey on Higher Education ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon green">✚</span>
+                        <h3>India medical colleges · NEET</h3>
+                        <p>Check recognized institutions and course permissions, then use MCC or the relevant state counselling authority for seat matrices, allotments and closing ranks.</p>
+                        <a class="method-tag" href="https://www.nmc.org.in/" target="_blank" rel="noopener noreferrer">National Medical Commission ↗</a>
+                        <a class="method-tag" href="https://mcc.nic.in/" target="_blank" rel="noopener noreferrer">Medical Counselling Committee ↗</a>
+                        <a class="method-tag" href="https://neet.nta.nic.in/" target="_blank" rel="noopener noreferrer">Official NEET-UG portal ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon coral">✚</span>
+                        <h3>B.Sc. Nursing · Karnataka fees</h3>
+                        <p>KEA lists a course-specific 2026–27 fee notice. Compare government/KEA, private, management and NRI seat categories only within the same schedule; hostel and other charges may be separate.</p>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/kea/ugcet2026" target="_blank" rel="noopener noreferrer">KEA UGCET 2026 notices ↗</a>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/keawebentry456/ugcet2026/BSCNURSING_NOTI_16102026kannada.pdf" target="_blank" rel="noopener noreferrer">B.Sc. Nursing 2026–27 fee notice (PDF) ↗</a>
+                        <a class="method-tag" href="https://www.indiannursingcouncil.org/universities-offering-recognized-nursing-qualification" target="_blank" rel="noopener noreferrer">Verify recognized nursing programmes ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon green">◌</span>
+                        <h3>Agriculture &amp; Forestry · Karnataka fees</h3>
+                        <p>Farm-university government seats, farmer quota, ICAR seats and any private/NRI offerings can have different admission and fee rules. Check the course-specific row and quota in current notices.</p>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/kea/ugcet2026" target="_blank" rel="noopener noreferrer">KEA UGCET cutoffs, seat matrices and notices ↗</a>
+                        <a class="method-tag" href="https://cetonline.karnataka.gov.in/keawebentry456/ugcet2026/ugcet_2026_feesbreakupkannada.pdf" target="_blank" rel="noopener noreferrer">UGCET 2026–27 provisional fee structure (PDF) ↗</a>
+                        <a class="method-tag" href="https://sites.google.com/a/uasd.in/admission/ug-admissions" target="_blank" rel="noopener noreferrer">UAS Dharwad UG admissions and ICAR notices ↗</a>
+                        <a class="method-tag" href="https://uahs.edu.in/programmes/" target="_blank" rel="noopener noreferrer">KSNUAHS programmes and eligibility ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon orange">₹</span>
+                        <h3>How to compare ranks &amp; fees</h3>
+                        <p>KCET and NEET closing ranks are not universal cutoffs. Compare by exam year, course, college, category, quota, counselling round and seat type.</p>
+                        <p>Government, private, management, NRI and deemed-university fees can differ. Read the current fee order and counselling notice, and distinguish tuition from hostel and other charges.</p>
+                    </article>
+                    <article>
+                        <span class="method-icon blue">✓</span>
+                        <h3>Check before applying</h3>
+                        <p>Confirm recognition, course approval, affiliation, total annual cost, refund rules, hostel fees, scholarship eligibility and official application dates directly with the authority.</p>
+                        <p>Do not rely on an old cutoff as a promise of admission; ranks and fees change each year.</p>
+                    </article>
+                </div>
+                <p class="pathway-note">This project does not yet contain a complete college-by-college fee or cutoff database. The linked authorities publish the current source records; always use the latest official counselling round and fee notice.</p>
+            </section>
+
+            <section class="view" id="specializations">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">04 · GO DEEPER</p>
+                        <h1>Find your <i>specialization.</i></h1>
+                        <p class="subhead">A specialization gives your broad course a sharper focus and helps you build a relevant portfolio.</p>
+                    </div>
+                </div>
+                <div class="methodology-grid compact-grid">
+                    <article>
+                        <h3>Artificial intelligence</h3>
+                        <p>Machine learning, natural language processing and computer vision.</p>
+                    </article>
+                    <article>
+                        <h3>Product design</h3>
+                        <p>User research, interaction design and design systems.</p>
+                    </article>
+                    <article>
+                        <h3>Finance</h3>
+                        <p>Investment analysis, financial modelling and fintech.</p>
+                    </article>
+                    <article>
+                        <h3>Biotechnology</h3>
+                        <p>Genomics, bioinformatics and pharmaceutical research.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="view" id="eligibility">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">05 · CHECK THE GATE</p>
+                        <h1>Eligibility <i>criteria.</i></h1>
+                        <p class="subhead">Before applying, check subject combinations, minimum marks, age rules and category requirements on the official institution website.</p>
+                    </div>
+                </div>
+                <div class="checklist-panel">
+                    <div><span>01</span><strong>Subjects</strong>
+                        <p>Confirm that your Class 12 subjects match the course requirement.</p>
+                    </div>
+                    <div><span>02</span><strong>Marks</strong>
+                        <p>Record the minimum aggregate and subject-wise cut-offs.</p>
+                    </div>
+                    <div><span>03</span><strong>Documents</strong>
+                        <p>Keep marksheets, identity proof, certificates and photographs ready.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="entrance-exams">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">06 · PLAN AHEAD</p>
+                        <h1>Entrance <i>examinations.</i></h1>
+                        <p class="subhead">Map each target course to its exam, registration window, syllabus and counselling process.</p>
+                    </div>
+                </div>
+                <div class="research-table">
+                    <div class="research-row research-head"><span>Exam family</span><span>Common route</span><span>Preparation focus</span></div>
+                    <div class="research-row"><strong>Engineering</strong><span>National and state exams</span><span>Physics, chemistry, mathematics</span></div>
+                    <div class="research-row"><strong>Medical</strong><span>National medical entrance</span><span>Physics, chemistry, biology</span></div>
+                    <div class="research-row"><strong>University aptitude</strong><span>Institution or common tests</span><span>Reasoning, language and domain subjects</span></div>
+                </div>
+            </section>
+
+            <section class="view" id="skills">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">07 · BUILD EVIDENCE</p>
+                        <h1>Required <i>skills.</i></h1>
+                        <p class="subhead">Skills become convincing when you can show them through projects, writing, experiments or real outcomes.</p>
+                    </div>
+                </div>
+                <div class="skill-board">
+                    <div><strong>Foundations</strong>
+                        <p>Communication · quantitative reasoning · digital literacy</p>
+                    </div>
+                    <div><strong>Technical</strong>
+                        <p>Python · spreadsheets · research · design tools</p>
+                    </div>
+                    <div><strong>Human</strong>
+                        <p>Curiosity · collaboration · resilience · ethical judgement</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="higher-education">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">08 · KEEP LEARNING</p>
+                        <h1>Higher education <i>opportunities.</i></h1>
+                        <p class="subhead">Explore undergraduate study, integrated programmes, certifications, internships and postgraduate pathways.</p>
+                    </div>
+                </div>
+                <div class="methodology-list">
+                    <div><strong>Undergraduate degree</strong>
+                        <p>Build the broad foundation and credentials needed for your first professional role.</p>
+                    </div>
+                    <div><strong>Integrated and honours routes</strong>
+                        <p>Combine depth, research and sometimes a postgraduate qualification in one longer programme.</p>
+                    </div>
+                    <div><strong>Research and postgraduate study</strong>
+                        <p>Specialize further through a master’s, fellowship or doctoral programme.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="scholarships">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">FUND YOUR NEXT STEP</p>
+                        <h1>Scholarships &amp; <i>study abroad.</i></h1>
+                        <p class="subhead">Find official starting points for central and state scholarships, plus international study and funding opportunities.</p>
+                    </div>
+                </div>
+                <div class="methodology-grid">
+                    <article>
+                        <span class="method-icon coral">₹</span>
+                        <h3>Central Government scholarships</h3>
+                        <p>Search central-sector and centrally sponsored student schemes, review current notices, and apply through the official National Scholarship Portal when a scheme directs you there.</p>
+                        <a class="method-tag" href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">National Scholarship Portal ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon green">⌂</span>
+                        <h3>State Government scholarships</h3>
+                        <p>State benefits can depend on domicile, course, income, community or category, and institution. Use the government scheme finder to select your state; Karnataka students can also check SSP.</p>
+                        <a class="method-tag" href="https://www.myscheme.gov.in/" target="_blank" rel="noopener noreferrer">myScheme · Central and State/UT schemes ↗</a>
+                        <a class="method-tag" href="https://ssp.postmatric.karnataka.gov.in/" target="_blank" rel="noopener noreferrer">Karnataka State Scholarship Portal ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon blue">✈</span>
+                        <h3>International study &amp; funding</h3>
+                        <p>Compare destinations, recognised programmes, costs, funding, language requirements, visas, and application timelines before choosing a course abroad.</p>
+                        <a class="method-tag" href="https://educationusa.state.gov/your-5-steps-us-study" target="_blank" rel="noopener noreferrer">EducationUSA · Study in the United States ↗</a>
+                        <a class="method-tag" href="https://www.daad.de/en/studying-in-germany/scholarships/" target="_blank" rel="noopener noreferrer">DAAD · Scholarships for Germany ↗</a>
+                        <a class="method-tag" href="https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters" target="_blank" rel="noopener noreferrer">Erasmus Mundus Joint Masters ↗</a>
+                    </article>
+                    <article>
+                        <span class="method-icon orange">✓</span>
+                        <h3>Prepare a strong application</h3>
+                        <p>Check eligibility and deadlines on the official scheme or university page. Keep marksheets, identity and domicile documents, income or category certificates when applicable, transcripts, passport, and references ready.</p>
+                        <p>Never pay an unofficial agent or share passwords, OTPs, or banking PINs to “secure” a scholarship.</p>
+                    </article>
+                </div>
+                <p class="method-tag">Scholarship availability, eligibility and closing dates change. Confirm the latest details with the official provider before applying.</p>
+            </section>
+
+            <section class="view" id="career-scope">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">09 · SEE THE HORIZON</p>
+                        <h1>Career <i>scope.</i></h1>
+                        <p class="subhead">Scope means the range of roles, industries, locations and future learning paths available after your starting qualification.</p>
+                    </div>
+                </div>
+                <div class="scope-panel"><strong>Role mobility</strong>
+                    <p>Strong fundamentals let you move from entry-level work into specialist, product, research or leadership tracks.</p>
+                    <div class="scope-line"><span>Learn</span><i></i><span>Contribute</span><i></i><span>Lead</span></div>
+                </div>
+            </section>
+
+            <section class="view" id="job-opportunities">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">10 · CONNECT TO WORK</p>
+                        <h1>Job <i>opportunities.</i></h1>
+                        <p class="subhead">Look beyond job titles: compare responsibilities, work environments, entry routes and the evidence employers ask for.</p>
+                    </div>
+                </div>
+                <div class="opportunity-grid">
+                    <article><strong>Graduate roles</strong>
+                        <p>Analyst, associate, trainee and junior specialist positions.</p>
+                    </article>
+                    <article><strong>Internships</strong>
+                        <p>Short placements that turn classroom skills into experience.</p>
+                    </article>
+                    <article><strong>Independent work</strong>
+                        <p>Freelance, creator, consultant and entrepreneurial pathways.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="view" id="salary-expectations">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">11 · VALUE THE WORK</p>
+                        <h1>Salary <i>expectations.</i></h1>
+                        <p class="subhead">Salary varies by role, location, skills, experience, organisation and economic conditions. Treat ranges as guidance, not promises.</p>
+                    </div>
+                </div>
+                <div class="salary-panel">
+                    <div><small>EARLY CAREER</small><strong>Build range, not just a number</strong>
+                        <p>Compare total compensation, learning, stability and growth alongside the first offer.</p>
+                    </div>
+                    <div class="salary-bars"><i style="height:42%"></i><i style="height:58%"></i><i style="height:76%"></i><i style="height:91%"></i></div>
+                </div>
+            </section>
+
+            <section class="view" id="industry-trends">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">12 · STAY CURRENT</p>
+                        <h1>Industry <i>trends.</i></h1>
+                        <p class="subhead">Use trends to choose what to learn next, while grounding your decision in durable skills and verified sources.</p>
+                    </div>
+                </div>
+                <div class="trend-list">
+                    <div><span class="trend-dot mint"></span><strong>AI-assisted work</strong>
+                        <p>Learn to use tools thoughtfully and verify their outputs.</p>
+                    </div>
+                    <div><span class="trend-dot blue"></span><strong>Cyber resilience</strong>
+                        <p>Security and privacy matter across every digital industry.</p>
+                    </div>
+                    <div><span class="trend-dot coral"></span><strong>Sustainability</strong>
+                        <p>Energy, climate and responsible growth are reshaping roles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="saved">
+                <div class="page-intro compact">
+                    <div>
+                        <p class="kicker">YOUR SHORTLIST</p>
+                        <h1>Keep the good <i>questions.</i></h1>
+                        <p class="subhead">Four career paths you want to come back to.</p>
+                    </div>
+                </div>
+                <div class="saved-list" id="saved-careers-list"></div>
+            </section>
+        </main>
+    </div>
+    <div class="toast" id="toast">Your profile has been updated.</div>
+    <script src="script.js"></script>
+</body>
+
+</html>

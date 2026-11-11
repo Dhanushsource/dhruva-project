@@ -1,0 +1,14 @@
+education_level,stream,math_score,science_score,programming_skill,analytical_skill,technology_interest,medical_interest,business_interest,recommended_domain
+Class 12,Science,92,88,90,86,95,20,30,Technology
+Class 12,Science,85,82,78,90,88,25,35,Technology
+Class 12,Science,62,91,30,72,25,94,20,Healthcare
+Class 12,Commerce,78,70,35,84,30,15,92,Business
+Class 12,Arts,55,62,20,60,20,10,40,Arts
+Class 12,Science,88,86,72,80,78,25,42,Technology
+Class 12,Science,68,88,25,76,30,86,25,Healthcare
+Class 12,Commerce,82,75,42,88,35,12,90,Business
+Class 12,Science,90,84,82,92,91,15,30,Technology
+Class 12,Arts,60,66,25,68,32,12,55,Arts
+Class 12,Science,74,80,45,75,55,68,24,Science
+Class 12,Science,78,84,38,79,62,60,28,Science
+Class 12,Commerce,72,69,50,77,60,10,82,Business
