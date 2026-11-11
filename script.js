@@ -1192,11 +1192,12 @@ function updateStudentSummary(profile) {
         : 'Sign in to continue';
     if (sidebarAvatar) sidebarAvatar.textContent = initials;
     if (topbarAvatar) topbarAvatar.textContent = initials;
-    if (overviewName) overviewName.textContent = fullName ? fullName.split(' ')[0] : 'there';
+    if (overviewName) overviewName.textContent = fullName ? fullName.split(' ')[0] : '';
     if (greetingEl) {
-        const prefix = greetingEl.dataset.greetingPrefix || 'Good morning';
-        const firstName = fullName ? fullName.split(' ')[0] : 'there';
-        greetingEl.innerHTML = `${prefix}, <span id="overview-name">${escapeHTML(firstName)}</span><span class="accent">.</span>`;
+        const firstName = fullName ? fullName.split(' ')[0] : '';
+        greetingEl.innerHTML = firstName
+            ? `Welcome to Campus AI, <span id="overview-name">${escapeHTML(firstName)}</span><span class="accent">.</span>`
+            : `Welcome to Campus AI<span class="accent">.</span>`;
     }
     if (logoutButton) logoutButton.hidden = !fullName;
 
@@ -1348,11 +1349,6 @@ async function initializeApp() {
         const months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
         dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
     }
-    if (greetingEl) {
-        const hour = new Date().getHours();
-        const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-        greetingEl.dataset.greetingPrefix = greeting;
-    }
 
     await loadCareerCatalog();
     if (localStorage.getItem('careerCompassAccessToken')) {
@@ -1382,6 +1378,8 @@ function performLogout(notify = true) {
     savedCareerIds = new Set();
     // Reset UI
     updateStudentSummary({});
+    const greetingEl = document.querySelector('[data-dynamic-greeting]');
+    if (greetingEl) greetingEl.innerHTML = `Welcome to Campus AI<span class="accent">.</span>`;
     renderCareerCards(recommendationGrid, [], false);
     renderSavedCareers([]);
     const savedCountEl = document.querySelector('#saved-career-count');
@@ -1410,12 +1408,9 @@ if (logoutButtonEl) {
     const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
     const months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
     dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-    const hour = now.getHours();
-    const prefix = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
     const greetingEl = document.querySelector('[data-dynamic-greeting]');
-    if (greetingEl) {
-        greetingEl.dataset.greetingPrefix = prefix;
-        greetingEl.innerHTML = `${prefix}, <span id="overview-name">there</span><span class="accent">.</span>`;
+    if (greetingEl && !localStorage.getItem('careerCompassAccessToken')) {
+        greetingEl.innerHTML = `Welcome to Campus AI<span class="accent">.</span>`;
     }
 }());
 
