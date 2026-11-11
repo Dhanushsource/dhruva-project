@@ -827,12 +827,320 @@ document.querySelector('#download-roadmap-button').addEventListener('click', () 
     showToast('Roadmap downloaded.');
 });
 
+// ─── Career Scope Feature ──────────────────────────────────────────────────
+const scopeData = [
+    {
+        domain: 'Technology',
+        icon: '⌘',
+        color: 'blue',
+        title: 'Software, AI & Cloud Systems',
+        subhead: 'From enterprise computing and consumer platforms to foundational AI models and secure infrastructure.',
+        industryReach: 'Fintech, Healthtech, E-commerce, Autonomous Vehicles, SaaS, Aerospace, Defence, EdTech.',
+        emergingTrends: 'Generative AI Engineering, MLOps, Quantum Computing Algorithms, Zero-Trust Architecture, Edge AI.',
+        higherEd: 'M.Tech / M.S. in Computer Science, Ph.D. in AI/Robotics, Executive MBA in Tech Management.',
+        globalScope: 'High global mobility (H-1B, UK Global Talent Visa, EU Blue Card, Canada Express Entry); remote international contracts.'
+    },
+    {
+        domain: 'Healthcare',
+        icon: '✚',
+        color: 'green',
+        title: 'Clinical Medicine, Nursing & Biotech',
+        subhead: 'Direct patient care, surgical intervention, pharmaceutical research, and community public health delivery.',
+        industryReach: 'Super-specialty Hospitals, Clinical Research Labs, Pharmaceutical Giants, Global Health NGOs, Bio-manufacturing.',
+        emergingTrends: 'Personalized Genomic Medicine, Robotic-Assisted Surgery, Tele-health Ecosystems, AI Diagnostics.',
+        higherEd: 'MD / MS, DM / M.Ch super-specializations, Master of Public Health (MPH), Global Fellowships.',
+        globalScope: 'High international demand with qualifying licensing exams: USMLE (USA), PLAB / GMC (UK), AMC (Australia), NCLEX (Nursing).'
+    },
+    {
+        domain: 'Business',
+        icon: '₹',
+        color: 'orange',
+        title: 'Finance, Accounting & Management',
+        subhead: 'Capital allocation, statutory auditing, market analytics, strategic leadership, and corporate governance.',
+        industryReach: 'Investment Banking, Big 4 Audit & Advisory, Management Consulting, Private Equity, FMCG Corporations.',
+        emergingTrends: 'Algorithmic Trading, ESG & Sustainable Finance, AI-driven Financial Modeling, Cross-border M&A.',
+        higherEd: 'MBA from top IIMs/ISB/global B-schools, Chartered Financial Analyst (CFA Level 1-3), CPA.',
+        globalScope: 'Global reciprocity for CA/CFA/MBA; international financial centers in London, Singapore, New York, Dubai.'
+    },
+    {
+        domain: 'Engineering',
+        icon: '⚙',
+        color: 'blue',
+        title: 'Mechanical, Civil & Electrical Systems',
+        subhead: 'Physical infrastructure, precision machinery, renewable power grids, and smart industrial manufacturing.',
+        industryReach: 'Smart City Infrastructure, Renewable Energy (Solar/Wind/Green Hydrogen), EV & Automotive, PSUs.',
+        emergingTrends: 'Electric Vehicle Powertrains, BIM (Building Information Modeling), Smart Grid IoT, Additive Manufacturing.',
+        higherEd: 'M.Tech via GATE, M.S. in Structural/Automotive Engineering in Germany/US, Project Management (PMP).',
+        globalScope: 'Infrastructure opportunities in Middle East (GCC), Europe, Australia; Engineers Australia Washington Accord.'
+    },
+    {
+        domain: 'Law',
+        icon: '§',
+        color: 'purple',
+        title: 'Corporate Law, Litigation & Policy',
+        subhead: 'Defending constitutional rights, contract enforcement, corporate compliance, and regulatory governance.',
+        industryReach: 'Top Law Partnerships, Corporate In-House Legal Teams, Judicial Services, Arbitration Tribunals, Think Tanks.',
+        emergingTrends: 'Tech & AI Law, Data Privacy (DPDP Act compliance), Cyber Law, International Intellectual Property, Energy Law.',
+        higherEd: 'LL.M. in Corporate/IP Law from National Law Universities or Ivy League/Oxbridge, Judicial Service Examinations.',
+        globalScope: 'Cross-border arbitration (Singapore SIAC, London LCIA); qualifying exams for foreign jurisdictions (UK SQE, NY Bar).'
+    },
+    {
+        domain: 'Design',
+        icon: '✦',
+        color: 'coral',
+        title: 'Product Design (UX/UI) & Architecture',
+        subhead: 'Crafting intuitive digital experiences and sustainable, functional built environments.',
+        industryReach: 'Tech Product Companies, Architectural Studios, Consumer Hardware, Media Houses, Game Studios.',
+        emergingTrends: 'Spatial Computing (AR/VR/VisionOS UI), Design Systems Engineering, Zero-Carbon Architecture, Biophilic Design.',
+        higherEd: 'M.Des at NID/IIT IDC, M.Arch, Master of Interaction Design (HCI) in US/Europe.',
+        globalScope: 'Global remote product design roles; international architecture licensure through RIBA / AIA.'
+    },
+    {
+        domain: 'Agriculture & Science',
+        icon: '◌',
+        color: 'green',
+        title: 'Agricultural Science & Environmental Ecology',
+        subhead: 'Food security, sustainable crop yields, climate resilience, and environmental conservation.',
+        industryReach: 'Agri-tech Startups, Seed & Fertilizer Conglomerates, Environmental Consultancies, Forest Services, UN FAO.',
+        emergingTrends: 'Precision Drone Farming, Hydroponics & Vertical Farming, Carbon Credit Auditing, Climate Adaptation Tech.',
+        higherEd: 'M.Sc. Agriculture (ICAR-JRF), Ph.D. in Agronomy/Genetics, Environmental Law & Policy.',
+        globalScope: 'Research grants and post-doctoral fellowships at Wageningen, UC Davis, FAO, CGIAR research centres.'
+    }
+];
+
+function renderCareerScope(filterDomain = 'all') {
+    const container = document.querySelector('#scope-cards-container');
+    if (!container) return;
+    const filtered = filterDomain === 'all'
+        ? scopeData
+        : scopeData.filter(item => item.domain.toLowerCase().includes(filterDomain.toLowerCase()));
+
+    container.innerHTML = filtered.map(item => `
+        <article class="scope-domain-card">
+            <span class="method-icon ${item.color}">${item.icon}</span>
+            <h3>${escapeHTML(item.title)}</h3>
+            <p class="scope-subhead">${escapeHTML(item.subhead)}</p>
+            <div class="scope-detail-section">
+                <strong>Industry Reach &amp; Verticals</strong>
+                <p>${escapeHTML(item.industryReach)}</p>
+            </div>
+            <div class="scope-detail-section">
+                <strong>Emerging Horizons &amp; Next-Gen Tech</strong>
+                <p>${escapeHTML(item.emergingTrends)}</p>
+            </div>
+            <div class="scope-detail-section">
+                <strong>Advanced Qualifications</strong>
+                <p>${escapeHTML(item.higherEd)}</p>
+            </div>
+            <div class="scope-detail-section">
+                <strong>Global Mobility &amp; Overseas Licensing</strong>
+                <p>${escapeHTML(item.globalScope)}</p>
+            </div>
+        </article>
+    `).join('');
+}
+
+document.querySelectorAll('#scope-domain-chips [data-scope-filter]').forEach(chip => {
+    chip.addEventListener('click', () => {
+        document.querySelectorAll('#scope-domain-chips .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderCareerScope(chip.dataset.scopeFilter);
+    });
+});
+
+// ─── Job Opportunities Feature ─────────────────────────────────────────────
+const employerSectorsData = [
+    {
+        sector: 'Technology & Internet',
+        lead: 'Product firms, IT multinationals & high-growth startups',
+        employers: ['Google', 'Microsoft', 'Amazon', 'TCS', 'Infosys', 'Wipro', 'Zomato', 'Swiggy', 'Flipkart', 'Zoho']
+    },
+    {
+        sector: 'Healthcare & Pharmaceuticals',
+        lead: 'Hospital chains, research labs & pharma manufacturers',
+        employers: ['Apollo Hospitals', 'Manipal Health', 'Fortis', 'Sun Pharma', 'Dr. Reddy’s', 'Biocon', 'Cipla', 'Max Healthcare']
+    },
+    {
+        sector: 'Banking & Financial Services',
+        lead: 'Investment banks, Big-4 accounting & public/private banks',
+        employers: ['HDFC Bank', 'ICICI Bank', 'State Bank of India', 'EY', 'PwC', 'Deloitte', 'KPMG', 'Goldman Sachs', 'Morgan Stanley']
+    },
+    {
+        sector: 'Engineering, Energy & PSUs',
+        lead: 'Infrastructure conglomerates & public enterprises',
+        employers: ['Larsen & Toubro (L&T)', 'Tata Motors', 'BHEL', 'NTPC', 'ISRO', 'Tata Steel', 'Mahindra & Mahindra', 'Reliance Industries']
+    },
+    {
+        sector: 'Legal & Consulting Services',
+        lead: 'Top law partnerships & management strategy consultancies',
+        employers: ['Shardul Amarchand Mangaldas', 'Cyril Amarchand', 'Khaitan & Co', 'Trilegal', 'McKinsey & Co', 'Boston Consulting Group (BCG)']
+    },
+    {
+        sector: 'Agriculture, FMCG & Environment',
+        lead: 'Food production, agri-science & sustainability organizations',
+        employers: ['ITC Agri-Business', 'Syngenta India', 'Bayer CropScience', 'UPL', 'Godrej Agrovet', 'Central / State Farm Universities']
+    }
+];
+
+function renderJobOpportunities() {
+    const container = document.querySelector('#employer-sectors-container');
+    if (!container) return;
+    container.innerHTML = employerSectorsData.map(item => `
+        <article class="employer-sector-card">
+            <h4>${escapeHTML(item.sector)}</h4>
+            <p class="sector-lead">${escapeHTML(item.lead)}</p>
+            <div class="employer-tags-wrap">
+                ${item.employers.map(emp => `<span>${escapeHTML(emp)}</span>`).join('')}
+            </div>
+        </article>
+    `).join('');
+}
+
+// ─── Salary Expectations Feature ───────────────────────────────────────────
+function parseSalaryRange(rangeStr = '') {
+    const numbers = rangeStr.match(/\d+(\.\d+)?/g);
+    if (numbers && numbers.length >= 2) {
+        const min = parseFloat(numbers[0]);
+        const max = parseFloat(numbers[1]);
+        const mid = Math.round((min + max) / 2);
+        return { min, mid, max, minStr: `₹ ${min} LPA`, midStr: `₹ ${mid} LPA`, maxStr: `₹ ${max}+ LPA` };
+    }
+    if (numbers && numbers.length === 1) {
+        const val = parseFloat(numbers[0]);
+        return { min: val, mid: Math.round(val * 1.5), max: Math.round(val * 2.2), minStr: `₹ ${val} LPA`, midStr: `₹ ${Math.round(val * 1.5)} LPA`, maxStr: `₹ ${Math.round(val * 2.2)}+ LPA` };
+    }
+    return { min: 4, mid: 9, max: 18, minStr: '₹ 4 LPA', midStr: '₹ 9 LPA', maxStr: '₹ 18+ LPA' };
+}
+
+function updateSalaryInspector(careerName) {
+    const career = careerRecords.find(c => c.name === careerName) || careerRecords[0];
+    if (!career) return;
+
+    const detailsContainer = document.querySelector('#inspector-details');
+    const domainTag = document.querySelector('#inspector-domain-tag');
+    if (domainTag) {
+        domainTag.textContent = career.domain || 'General';
+        domainTag.className = `method-tag ${career.domain === 'Business' ? 'orange' : career.domain === 'Healthcare' || career.domain === 'Design' ? 'green' : 'blue'}`;
+    }
+
+    const { minStr, midStr, maxStr, min, mid, max } = parseSalaryRange(career.salary_range);
+    const maxReference = 35;
+    const earlyPct = Math.min(100, Math.round((min / maxReference) * 100));
+    const midPct = Math.min(100, Math.round((mid / maxReference) * 100));
+    const seniorPct = Math.min(100, Math.round((max / maxReference) * 100));
+
+    if (detailsContainer) {
+        detailsContainer.innerHTML = `
+            <div class="inspector-col">
+                <h4>Experience-Wise Compensation</h4>
+                <div class="inspector-scale">
+                    <div class="scale-row">
+                        <span class="scale-label">Early (0–2 yrs)</span>
+                        <div class="scale-bar-track">
+                            <div class="scale-bar-fill early" style="width:${earlyPct}%"></div>
+                        </div>
+                        <span class="scale-val">${escapeHTML(minStr)}</span>
+                    </div>
+                    <div class="scale-row">
+                        <span class="scale-label">Mid (3–6 yrs)</span>
+                        <div class="scale-bar-track">
+                            <div class="scale-bar-fill mid" style="width:${midPct}%"></div>
+                        </div>
+                        <span class="scale-val">${escapeHTML(midStr)}</span>
+                    </div>
+                    <div class="scale-row">
+                        <span class="scale-label">Senior (7+ yrs)</span>
+                        <div class="scale-bar-track">
+                            <div class="scale-bar-fill senior" style="width:${seniorPct}%"></div>
+                        </div>
+                        <span class="scale-val">${escapeHTML(maxStr)}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inspector-col">
+                <h4>Top Paying Metros</h4>
+                <ul class="inspector-city-list">
+                    <li>Bengaluru (Tech, Biotech &amp; R&amp;D Hubs)</li>
+                    <li>Mumbai (Finance, Corporate Law &amp; Media)</li>
+                    <li>Delhi-NCR (Public Policy, Healthcare &amp; Startups)</li>
+                    <li>Hyderabad (Pharma, AI &amp; Global Hubs)</li>
+                    <li>Pune &amp; Chennai (Automotive, IT &amp; Engineering)</li>
+                </ul>
+            </div>
+            <div class="inspector-col">
+                <h4>Key Pay Multipliers</h4>
+                <ul class="inspector-multiplier-list">
+                    <li>Tier-1 / Premier college placement drives</li>
+                    <li>High-demand technical or clinical credentials</li>
+                    <li>Demonstrated portfolio &amp; practical problem solving</li>
+                    <li>Postgraduate super-specialization or MBA</li>
+                </ul>
+            </div>
+        `;
+    }
+}
+
+function renderSalaryTable(filterQuery = '') {
+    const tableContainer = document.querySelector('#salary-table-container');
+    if (!tableContainer) return;
+    const query = filterQuery.toLowerCase();
+    const filtered = careerRecords.filter(c => `${c.name} ${c.domain} ${c.salary_range}`.toLowerCase().includes(query));
+
+    if (!filtered.length) {
+        tableContainer.innerHTML = '<div class="api-error-state">No matching careers found in the salary directory.</div>';
+        return;
+    }
+
+    const headMarkup = `
+        <div class="salary-row-head">
+            <span>Career</span>
+            <span>Domain</span>
+            <span>Duration &amp; Route</span>
+            <span>Indicative Pay</span>
+            <span>Market Demand</span>
+        </div>
+    `;
+
+    const rowsMarkup = filtered.map(c => `
+        <div class="salary-row-item">
+            <strong>${escapeHTML(c.name)}</strong>
+            <span>${escapeHTML(c.domain)}</span>
+            <span>${escapeHTML(c.education_duration || '3–4 years')}</span>
+            <span><span class="salary-badge">${escapeHTML(c.salary_range || 'Competitive')}</span></span>
+            <span>${escapeHTML(c.market_demand || 80)}%</span>
+        </div>
+    `).join('');
+
+    tableContainer.innerHTML = headMarkup + rowsMarkup;
+}
+
+function renderSalaryExpectations() {
+    const select = document.querySelector('#salary-career-select');
+    if (select && careerRecords.length && (!select.options || select.options.length <= 1)) {
+        select.innerHTML = careerRecords.map(c => `<option value="${escapeHTML(c.name)}">${escapeHTML(c.name)} (${escapeHTML(c.domain)})</option>`).join('');
+        select.addEventListener('change', e => updateSalaryInspector(e.target.value));
+    }
+    if (careerRecords.length) {
+        const selected = select && select.value ? select.value : careerRecords[0].name;
+        updateSalaryInspector(selected);
+        renderSalaryTable(document.querySelector('#salary-table-search')?.value || '');
+    }
+}
+
+const salarySearchEl = document.querySelector('#salary-table-search');
+if (salarySearchEl) {
+    salarySearchEl.addEventListener('input', e => renderSalaryTable(e.target.value));
+}
+
 function showView(id) {
     views.forEach(view => view.classList.toggle('active-view', view.id === id));
     document.querySelectorAll('.nav-item[data-view]').forEach(item => item.classList.toggle('active', item.dataset.view === id));
     const label = viewLabels[id] || id.replace('-', ' ');
     document.querySelector('.breadcrumb strong').textContent = label.charAt(0).toUpperCase() + label.slice(1);
     if (id === 'roadmap') renderRoadmap(selectedCareer);
+    if (id === 'career-scope') renderCareerScope();
+    if (id === 'job-opportunities') renderJobOpportunities();
+    if (id === 'salary-expectations') renderSalaryExpectations();
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     window.scrollTo({ top: 0, behavior });
 }
@@ -1261,6 +1569,9 @@ async function loadCareerCatalog() {
     try {
         careerRecords = await apiRequest('/careers');
         renderCareerCards(exploreGrid, careerRecords);
+        renderSalaryExpectations();
+        renderCareerScope();
+        renderJobOpportunities();
     } catch (error) {
         if (exploreGrid) {
             exploreGrid.innerHTML = `<div class="api-error-state"><strong>Could not load careers</strong>${escapeHTML(error.message)}</div>`;

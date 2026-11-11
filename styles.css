@@ -2159,3 +2159,449 @@ h1 i {
 .chat-input-bar button {
     white-space: nowrap;
 }
+
+
+/* ── Enhanced Career Scope ─────────────────────────────────────────────── */
+.scope-panel-enhanced {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
+.scope-ladder-header h3 {
+    margin: 12px 0 6px;
+    font: 600 20px 'Space Grotesk';
+    color: var(--ink);
+}
+.scope-ladder-header p {
+    color: var(--muted);
+    margin: 0 0 20px;
+    max-width: 680px;
+}
+.scope-stages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+.scope-stage-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.stage-tag {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+.stage-tag.blue { background: rgba(142, 185, 219, 0.25); color: #205072; }
+.stage-tag.green { background: rgba(169, 217, 199, 0.4); color: #1c5d46; }
+.stage-tag.orange { background: rgba(242, 209, 126, 0.4); color: #85530b; }
+.scope-stage-card h4 {
+    margin: 0 0 8px;
+    font: 600 16px 'Space Grotesk';
+    color: var(--ink);
+}
+.scope-stage-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0 0 16px;
+    flex: 1;
+}
+.scope-stage-perks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.scope-stage-perks span {
+    font-size: 11px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: var(--ink);
+}
+
+.scope-domain-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+.scope-domain-card h3 {
+    font: 600 18px 'Space Grotesk';
+    margin: 12px 0 8px;
+    color: var(--ink);
+}
+.scope-domain-card .scope-subhead {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+.scope-detail-section {
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+    margin-top: 10px;
+}
+.scope-detail-section strong {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #48655b;
+    margin-bottom: 4px;
+}
+.scope-detail-section p {
+    font-size: 13px;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Enhanced Job Opportunities ────────────────────────────────────────── */
+.opportunity-pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+.pathway-entry-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+}
+.pathway-entry-card h3 {
+    margin: 12px 0 6px;
+    font: 600 17px 'Space Grotesk';
+    color: var(--ink);
+}
+.pathway-entry-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 8px;
+    line-height: 1.5;
+}
+.pathway-entry-card .evidence-req {
+    background: var(--paper);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border-left: 3px solid var(--mint);
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--ink);
+}
+
+.employer-sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+.employer-sector-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+}
+.employer-sector-card h4 {
+    margin: 0 0 4px;
+    font: 600 16px 'Space Grotesk';
+    color: var(--ink);
+}
+.employer-sector-card .sector-lead {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 14px;
+}
+.employer-tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.employer-tags-wrap span {
+    font-size: 12px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    border-radius: 6px;
+    color: var(--ink);
+}
+
+.job-portals-panel {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+}
+.portals-header h3 {
+    margin: 10px 0 6px;
+    font: 600 18px 'Space Grotesk';
+}
+.portals-header p {
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-size: 13px;
+}
+.portals-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.portal-chip-link {
+    display: block;
+    text-decoration: none;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: all 0.15s ease;
+}
+.portal-chip-link:hover {
+    border-color: var(--navy);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+.portal-chip-link strong {
+    display: block;
+    color: var(--navy);
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.portal-chip-link small {
+    display: block;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.4;
+}
+
+/* ── Enhanced Salary Expectations ──────────────────────────────────────── */
+.salary-dashboard-card {
+    background: #1b323a;
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 24px;
+}
+.salary-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+.salary-dashboard-header h2 {
+    margin: 10px 0 6px;
+    font: 700 24px 'Space Grotesk';
+    color: #ffffff;
+}
+.salary-dashboard-header p {
+    color: #b5c7c2;
+    margin: 0;
+    font-size: 13.5px;
+    max-width: 620px;
+}
+.salary-sector-badge {
+    background: rgba(169, 217, 199, 0.2);
+    border: 1px solid var(--mint);
+    color: var(--mint);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+.salary-tier-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.tier-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 20px;
+}
+.tier-card.featured-tier {
+    background: rgba(169, 217, 199, 0.12);
+    border-color: rgba(169, 217, 199, 0.4);
+}
+.tier-level {
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #9cd6bf;
+    display: block;
+    margin-bottom: 8px;
+}
+.tier-amount {
+    font: 700 26px 'Space Grotesk';
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+.tier-amount small {
+    font-size: 14px;
+    color: #bfd0cc;
+    font-weight: 500;
+}
+.tier-card p {
+    font-size: 12.5px;
+    color: #bfd0cc;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.salary-inspector-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+    margin-bottom: 24px;
+}
+.inspector-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+.inspector-controls label strong {
+    font-size: 14px;
+    color: var(--ink);
+    margin-right: 12px;
+}
+.salary-dropdown {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-size: 14px;
+    outline: none;
+    font-weight: 500;
+}
+.inspector-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+.inspector-col h4 {
+    margin: 0 0 10px;
+    font: 600 15px 'Space Grotesk';
+    color: var(--ink);
+}
+.inspector-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.scale-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.scale-label {
+    width: 90px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+}
+.scale-bar-track {
+    flex: 1;
+    height: 12px;
+    background: var(--paper);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.scale-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: var(--navy);
+    transition: width 0.3s ease;
+}
+.scale-bar-fill.early { background: var(--blue); }
+.scale-bar-fill.mid { background: var(--mint); }
+.scale-bar-fill.senior { background: var(--coral); }
+.scale-val {
+    width: 95px;
+    font-weight: 700;
+    font-size: 12.5px;
+    text-align: right;
+    color: var(--ink);
+}
+.inspector-city-list,
+.inspector-multiplier-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.salary-comparison-table {
+    display: flex;
+    flex-direction: column;
+}
+.salary-row-head {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.2fr 1fr;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 18px;
+    border-bottom: 2px solid var(--line);
+    background: var(--paper);
+}
+.salary-row-item {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.2fr 1fr;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+}
+.salary-row-item:hover {
+    background: #fafbfa;
+}
+.salary-row-item strong {
+    color: var(--ink);
+    font-size: 14px;
+}
+.salary-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: rgba(169, 217, 199, 0.35);
+    color: #17523e;
+}
+
+@media (max-width: 960px) {
+    .scope-stages-grid,
+    .salary-tier-cards,
+    .employer-sectors-grid,
+    .opportunity-pathways-grid,
+    .portals-links-grid,
+    .inspector-details {
+        grid-template-columns: 1fr;
+    }
+    .salary-row-head,
+    .salary-row-item {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+}

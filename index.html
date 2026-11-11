@@ -671,13 +671,68 @@
                     <div>
                         <p class="kicker">09 · SEE THE HORIZON</p>
                         <h1>Career <i>scope.</i></h1>
-                        <p class="subhead">Scope means the range of roles, industries, locations and future learning paths available after your starting qualification.</p>
+                        <p class="subhead">Scope means role mobility, industry reach, higher-learning horizons, and global opportunities across major domains.</p>
                     </div>
                 </div>
-                <div class="scope-panel"><strong>Role mobility</strong>
-                    <p>Strong fundamentals let you move from entry-level work into specialist, product, research or leadership tracks.</p>
-                    <div class="scope-line"><span>Learn</span><i></i><span>Contribute</span><i></i><span>Lead</span></div>
+
+                <!-- Career Mobility Ladder -->
+                <div class="scope-panel-enhanced">
+                    <div class="scope-ladder-header">
+                        <span class="pill">CAREER PROGRESSION LADDER</span>
+                        <h3>How professional careers evolve over time</h3>
+                        <p>A starting degree is your launchpad. Professionals progress from guided execution to autonomous ownership and strategic leadership.</p>
+                    </div>
+                    <div class="scope-stages-grid">
+                        <div class="scope-stage-card">
+                            <span class="stage-tag blue">YEARS 0–2</span>
+                            <h4>Foundation &amp; Execution</h4>
+                            <p>Master core technical tools, protocols, workflows, and team collaboration under senior mentorship.</p>
+                            <div class="scope-stage-perks">
+                                <span>Guided execution</span>
+                                <span>Tool mastery</span>
+                                <span>Domain fundamentals</span>
+                            </div>
+                        </div>
+                        <div class="scope-stage-card">
+                            <span class="stage-tag green">YEARS 3–6</span>
+                            <h4>Specialist &amp; Ownership</h4>
+                            <p>Own critical deliverables, complex problem statements, client relationships, or specialized clinical cases.</p>
+                            <div class="scope-stage-perks">
+                                <span>Autonomous delivery</span>
+                                <span>Subject specialization</span>
+                                <span>Feature leadership</span>
+                            </div>
+                        </div>
+                        <div class="scope-stage-card">
+                            <span class="stage-tag orange">YEARS 7+</span>
+                            <h4>Strategy, Leadership &amp; Equity</h4>
+                            <p>Direct architectural, medical, or corporate strategy, mentor teams, and lead a practice or business unit.</p>
+                            <div class="scope-stage-perks">
+                                <span>Team mentorship</span>
+                                <span>Strategic direction</span>
+                                <span>Practice / Partner</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Filterable Sector Scope Cards -->
+                <div class="section-heading" style="margin-top:36px;">
+                    <div>
+                        <p class="kicker">DOMAIN HORIZONS</p>
+                        <h3>Scope and future outlook by sector</h3>
+                    </div>
+                    <div class="filter-chips" id="scope-domain-chips">
+                        <button class="chip active" data-scope-filter="all">All domains</button>
+                        <button class="chip" data-scope-filter="Technology">Technology</button>
+                        <button class="chip" data-scope-filter="Healthcare">Healthcare</button>
+                        <button class="chip" data-scope-filter="Business">Business</button>
+                        <button class="chip" data-scope-filter="Engineering">Engineering</button>
+                        <button class="chip" data-scope-filter="Law">Law &amp; Policy</button>
+                    </div>
+                </div>
+
+                <div class="methodology-grid scope-domain-grid" id="scope-cards-container"></div>
             </section>
 
             <section class="view" id="job-opportunities">
@@ -685,19 +740,77 @@
                     <div>
                         <p class="kicker">10 · CONNECT TO WORK</p>
                         <h1>Job <i>opportunities.</i></h1>
-                        <p class="subhead">Look beyond job titles: compare responsibilities, work environments, entry routes and the evidence employers ask for.</p>
+                        <p class="subhead">Compare hiring pathways, leading employer categories, placement models, and evidence employers look for across industries.</p>
                     </div>
                 </div>
-                <div class="opportunity-grid">
-                    <article><strong>Graduate roles</strong>
-                        <p>Analyst, associate, trainee and junior specialist positions.</p>
+
+                <!-- 4 Major Employment Pathways -->
+                <div class="opportunity-pathways-grid">
+                    <article class="pathway-entry-card">
+                        <span class="method-icon blue">⌘</span>
+                        <h3>Campus Placements</h3>
+                        <p><strong>Timeline:</strong> Pre-final &amp; final year (July – March).</p>
+                        <p>On-campus drives by IT services, product companies, core engineering firms, and financial institutions.</p>
+                        <p class="evidence-req"><strong>Evidence needed:</strong> Minimum CGPA/percentage, aptitude test scores, coding/technical rounds, and HR interviews.</p>
                     </article>
-                    <article><strong>Internships</strong>
-                        <p>Short placements that turn classroom skills into experience.</p>
+                    <article class="pathway-entry-card">
+                        <span class="method-icon green">⌁</span>
+                        <h3>Internships &amp; Apprenticeships</h3>
+                        <p><strong>Timeline:</strong> Semester breaks &amp; post-degree (2–12 months).</p>
+                        <p>National Apprenticeship Training Scheme (NATS), paid corporate internships, clinical hospital observerships, and legal clerkships.</p>
+                        <p class="evidence-req"><strong>Evidence needed:</strong> GitHub/portfolio links, college NOC, specific skill assessments.</p>
                     </article>
-                    <article><strong>Independent work</strong>
-                        <p>Freelance, creator, consultant and entrepreneurial pathways.</p>
+                    <article class="pathway-entry-card">
+                        <span class="method-icon orange">§</span>
+                        <h3>PSUs &amp; Government Recruitment</h3>
+                        <p><strong>Timeline:</strong> Annual gazetted examination cycles.</p>
+                        <p>Public Sector Undertakings (via GATE), UPSC Civil Services, SSC CGL, State PSCs, Banking (IBPS/SBI PO), and Defence forces.</p>
+                        <p class="evidence-req"><strong>Evidence needed:</strong> Competitive exam rank, document verification, physical fitness/medical exam where required.</p>
                     </article>
+                    <article class="pathway-entry-card">
+                        <span class="method-icon purple">✦</span>
+                        <h3>Independent Practice &amp; Startups</h3>
+                        <p><strong>Timeline:</strong> Continuous / post-licensing.</p>
+                        <p>Consulting, freelance software engineering, private clinics, tax advisory, architectural studios, and venture-backed startups.</p>
+                        <p class="evidence-req"><strong>Evidence needed:</strong> Regulatory registration (Bar Council, NMC, ICAI, COA), client testimonials, verified track record.</p>
+                    </article>
+                </div>
+
+                <!-- Top Employers by Industry -->
+                <div class="section-heading" style="margin-top:40px;">
+                    <div>
+                        <p class="kicker">HIRING ECOSYSTEM</p>
+                        <h3>Leading employers across sectors in India</h3>
+                    </div>
+                </div>
+
+                <div class="employer-sectors-grid" id="employer-sectors-container"></div>
+
+                <!-- Verified Portals & Application Checklist -->
+                <div class="job-portals-panel">
+                    <div class="portals-header">
+                        <span class="pill">OFFICIAL &amp; VERIFIED PLATFORMS</span>
+                        <h3>Where to search and apply securely</h3>
+                        <p>Avoid unofficial agents or payment gates for job offers. Use legitimate government and institutional employment exchanges.</p>
+                    </div>
+                    <div class="portals-links-grid">
+                        <a href="https://www.ncs.gov.in/" target="_blank" rel="noopener noreferrer" class="portal-chip-link">
+                            <strong>National Career Service (NCS) ↗</strong>
+                            <small>Ministry of Labour &amp; Employment · 100% verified government jobs &amp; career centres</small>
+                        </a>
+                        <a href="https://nats.education.gov.in/" target="_blank" rel="noopener noreferrer" class="portal-chip-link">
+                            <strong>National Apprenticeship Scheme (NATS) ↗</strong>
+                            <small>Ministry of Education · Paid graduate and diploma apprenticeship programs</small>
+                        </a>
+                        <a href="https://upsc.gov.in/" target="_blank" rel="noopener noreferrer" class="portal-chip-link">
+                            <strong>UPSC Official Examination Portal ↗</strong>
+                            <small>Civil Services, Engineering Services (IES), Combined Medical Services (CMS)</small>
+                        </a>
+                        <a href="https://ssc.gov.in/" target="_blank" rel="noopener noreferrer" class="portal-chip-link">
+                            <strong>Staff Selection Commission (SSC) ↗</strong>
+                            <small>CGL, CHSL, and technical officer posts in Central Government ministries</small>
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -706,15 +819,65 @@
                     <div>
                         <p class="kicker">11 · VALUE THE WORK</p>
                         <h1>Salary <i>expectations.</i></h1>
-                        <p class="subhead">Salary varies by role, location, skills, experience, organisation and economic conditions. Treat ranges as guidance, not promises.</p>
+                        <p class="subhead">Compare realistic early, mid, and senior career compensation (in INR LPA) based on Indian industry benchmarks.</p>
                     </div>
                 </div>
-                <div class="salary-panel">
-                    <div><small>EARLY CAREER</small><strong>Build range, not just a number</strong>
-                        <p>Compare total compensation, learning, stability and growth alongside the first offer.</p>
+
+                <!-- Hero Salary Overview Card with Interactive Experience Bar -->
+                <div class="salary-dashboard-card">
+                    <div class="salary-dashboard-header">
+                        <div>
+                            <span class="pill">COMPENSATION BENCHMARKS</span>
+                            <h2>Indian Industry Salary Spectrum</h2>
+                            <p>Compensation reflects specialized skill supply, experience level, problem complexity, and city living cost tier.</p>
+                        </div>
+                        <div class="salary-sector-badge">25 CAREERS ANALYZED</div>
                     </div>
-                    <div class="salary-bars"><i style="height:42%"></i><i style="height:58%"></i><i style="height:76%"></i><i style="height:91%"></i></div>
+
+                    <div class="salary-tier-cards">
+                        <div class="tier-card">
+                            <span class="tier-level">EARLY CAREER (0–2 YRS)</span>
+                            <div class="tier-amount">₹ 3.5 – 12 <small>LPA</small></div>
+                            <p>Graduate trainees, junior engineers, resident doctors, and entry analysts starting in industry or practice.</p>
+                        </div>
+                        <div class="tier-card featured-tier">
+                            <span class="tier-level">MID CAREER (3–6 YRS)</span>
+                            <div class="tier-amount">₹ 8 – 24 <small>LPA</small></div>
+                            <p>Experienced professionals, tech leads, specialist clinicians, managers, and chartered accountants.</p>
+                        </div>
+                        <div class="tier-card">
+                            <span class="tier-level">SENIOR / LEAD (7+ YRS)</span>
+                            <div class="tier-amount">₹ 18 – 45+ <small>LPA</small></div>
+                            <p>Principal engineers, medical specialists (MD/DM), partners, directors, and functional department heads.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Interactive Career Salary Inspector -->
+                <div class="salary-inspector-card">
+                    <div class="inspector-controls">
+                        <div>
+                            <label for="salary-career-select"><strong>Inspect career compensation:</strong></label>
+                            <select id="salary-career-select" class="salary-dropdown"></select>
+                        </div>
+                        <div id="inspector-domain-tag" class="method-tag blue">Technology</div>
+                    </div>
+
+                    <div class="inspector-details" id="inspector-details"></div>
+                </div>
+
+                <!-- Full Careers Salary Comparison Table with Search/Filter -->
+                <div class="section-heading" style="margin-top:36px;">
+                    <div>
+                        <p class="kicker">COMPREHENSIVE DIRECTORY</p>
+                        <h3>Compare all 25 careers side-by-side</h3>
+                    </div>
+                    <div class="search-box" style="max-width:320px;">
+                        ⌕ <input id="salary-table-search" placeholder="Filter by career or domain...">
+                    </div>
+                </div>
+
+                <div class="research-table salary-comparison-table" id="salary-table-container"></div>
             </section>
 
             <section class="view" id="industry-trends">
