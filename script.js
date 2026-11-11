@@ -1196,8 +1196,8 @@ function updateStudentSummary(profile) {
     if (greetingEl) {
         const firstName = fullName ? fullName.split(' ')[0] : '';
         greetingEl.innerHTML = firstName
-            ? `Welcome to Campus AI, <span id="overview-name">${escapeHTML(firstName)}</span><span class="accent">.</span>`
-            : `Welcome to Campus AI<span class="accent">.</span>`;
+            ? `Welcome to Compass AI, <span id="overview-name">${escapeHTML(firstName)}</span><span class="accent">.</span>`
+            : `Welcome to Compass AI<span class="accent">.</span>`;
     }
     if (logoutButton) logoutButton.hidden = !fullName;
 
@@ -1379,7 +1379,7 @@ function performLogout(notify = true) {
     // Reset UI
     updateStudentSummary({});
     const greetingEl = document.querySelector('[data-dynamic-greeting]');
-    if (greetingEl) greetingEl.innerHTML = `Welcome to Campus AI<span class="accent">.</span>`;
+    if (greetingEl) greetingEl.innerHTML = `Welcome to Compass AI<span class="accent">.</span>`;
     renderCareerCards(recommendationGrid, [], false);
     renderSavedCareers([]);
     const savedCountEl = document.querySelector('#saved-career-count');
@@ -1410,7 +1410,7 @@ if (logoutButtonEl) {
     dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
     const greetingEl = document.querySelector('[data-dynamic-greeting]');
     if (greetingEl && !localStorage.getItem('careerCompassAccessToken')) {
-        greetingEl.innerHTML = `Welcome to Campus AI<span class="accent">.</span>`;
+        greetingEl.innerHTML = `Welcome to Compass AI<span class="accent">.</span>`;
     }
 }());
 
