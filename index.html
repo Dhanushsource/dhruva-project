@@ -16,8 +16,8 @@
         <aside class="sidebar">
             <div class="brand"><span class="brand-mark">✦</span><span>career compass <b>ai</b></span></div>
             <div class="profile-mini">
-                <div class="avatar">DN</div>
-                <div><strong>Dhruva N S</strong><span>Class 12 · Science</span></div><span class="status-dot"></span></div>
+                <div class="avatar" id="sidebar-avatar">?</div>
+                <div><strong id="sidebar-name">Guest</strong><span id="sidebar-details">Sign in to continue</span></div><span class="status-dot"></span></div>
             <nav class="nav-list" aria-label="Primary navigation">
                 <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Overview</button>
                 <button class="nav-item" data-view="student-login"><span class="nav-icon">→</span>Student login</button>
@@ -44,7 +44,7 @@
             </nav>
             <div class="sidebar-bottom">
                 <div class="mentor-card"><span class="eyebrow">YOUR NEXT STEP</span><strong>Complete your profile</strong>
-                    <p>Unlock recommendations that feel like you.</p><button class="text-button" data-view="assessment">Continue <span>→</span></button></div><button class="nav-item"><span class="nav-icon">⚙</span>Settings</button></div>
+                    <p>Unlock recommendations that feel like you.</p><button class="text-button" data-view="assessment">Continue <span>→</span></button></div><button class="nav-item" id="logout-button" hidden><span class="nav-icon">⇤</span>Sign out</button><button class="nav-item"><span class="nav-icon">⚙</span>Settings</button></div>
         </aside>
 
         <main class="main-content">
@@ -52,15 +52,15 @@
                 <div class="mobile-brand">✦ career compass <b>ai</b></div>
                 <div class="breadcrumb">Workspace / <strong>Overview</strong></div>
                 <div class="top-actions"><button class="icon-button" title="Notifications">♢<span class="notification"></span></button><button class="help-button">Need help? <b>Ask Compass</b> <span>↗</span></button>
-                    <div class="avatar small">DN</div>
+                    <div class="avatar small" id="topbar-avatar">?</div>
                 </div>
             </header>
 
             <section class="view active-view" id="overview">
                 <div class="page-intro">
                     <div>
-                        <p class="kicker">TUESDAY, 25 AUGUST 2026</p>
-                        <h1>Good morning, Dhruva<span class="accent">.</span></h1>
+                        <p class="kicker" data-dynamic-date>LOADING DATE...</p>
+                        <h1 data-dynamic-greeting>Good morning, <span id="overview-name">there</span><span class="accent">.</span></h1>
                         <p class="subhead">One place to compare courses, careers and next steps after Class 10 or 12.</p>
                     </div><button class="primary-button" data-view="assessment"><span>✦</span> Refine my recommendations</button></div>
                 <div class="hero-panel">
@@ -750,6 +750,32 @@
             </section>
         </main>
     </div>
+
+    <!-- Ask Compass AI Interactive Drawer -->
+    <div class="chat-modal-backdrop" id="chat-modal" hidden>
+        <div class="chat-modal-window" role="dialog" aria-labelledby="chat-modal-title" aria-modal="true">
+            <div class="chat-header">
+                <div class="chat-header-title">
+                    <span class="brand-mark">✦</span>
+                    <div>
+                        <strong id="chat-modal-title">Ask Compass AI</strong>
+                        <p>Education, Entrance Exams &amp; Career Assistant</p>
+                    </div>
+                </div>
+                <button class="chat-close" id="close-chat" aria-label="Close chat modal">✕</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg bot">
+                    <p>Hello! I'm Compass AI. Ask me about careers, courses after 10th or 12th, entrance exams (NEET, JEE, KCET, CLAT), salaries, or required skills.</p>
+                </div>
+            </div>
+            <form class="chat-input-bar" id="chat-form">
+                <input type="text" id="chat-input" placeholder="e.g. Which entrance exam for MBBS in Karnataka?" autocomplete="off" required>
+                <button type="submit" class="primary-button chat-send">Ask <span>→</span></button>
+            </form>
+        </div>
+    </div>
+
     <div class="toast" id="toast">Your profile has been updated.</div>
     <script src="script.js"></script>
 </body>

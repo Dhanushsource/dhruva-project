@@ -1,3 +1,6 @@
+"""SQLAlchemy models for Career Compass AI."""
+from __future__ import annotations
+
 from datetime import datetime
 
 from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
@@ -14,8 +17,26 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255))
     role: Mapped[str] = mapped_column(String(30), default="student")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    profile: Mapped["StudentProfile | None"] = relationship(back_populates="user", cascade="all, delete-orphan", uselist=False)
-    saved_careers: Mapped[list["SavedCareer"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    profile: Mapped["StudentProfile | None"] = relationship(
+        back_populates="user", cascade="all, delete-orphan", uselist=False
+    )
+    saved_careers: Mapped[list["SavedCareer"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
+    refresh_tokens: Mapped[list["RefreshToken"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
+
+
+class RefreshToken(Base):
+    __tablename__ = "refresh_tokens"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime)
+    revoked: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    user: Mapped[User] = relationship(back_populates="refresh_tokens")
 
 
 class StudentProfile(Base):
@@ -42,6 +63,7 @@ class StudentProfile(Base):
     skills: Mapped[str] = mapped_column(Text, default="{}")
     work_preference: Mapped[str] = mapped_column(String(100), default="")
     location: Mapped[str] = mapped_column(String(100), default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     user: Mapped[User] = relationship(back_populates="profile")
 
 

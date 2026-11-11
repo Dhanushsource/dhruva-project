@@ -1,11 +1,4 @@
-const careers = [
-    ['Artificial Intelligence', 'Teach machines to think, learn and solve real-world problems.', '94% MATCH', 'blue', '⌘', 'Technology', '₹ 8–24 LPA'],
-    ['Data Science', 'Turn complex information into decisions that shape the future.', '89% MATCH', 'orange', '◉', 'Technology', '₹ 7–20 LPA'],
-    ['Cybersecurity', 'Protect the digital world from the threats we cannot always see.', '84% MATCH', 'purple', '✣', 'Technology', '₹ 6–18 LPA'],
-    ['Product Design', 'Shape useful, beautiful experiences for the people who use them.', '72% MATCH', 'green', '✚', 'Design', '₹ 5–16 LPA'],
-    ['Biotechnology', 'Use living systems to create healthier, more sustainable futures.', '68% MATCH', 'green', '✚', 'Healthcare', '₹ 4–12 LPA'],
-    ['Digital Marketing', 'Connect ideas with the people who need them most.', '64% MATCH', 'orange', '◉', 'Business', '₹ 4–14 LPA']
-];
+// Career data is now loaded entirely from the API — no static array.
 
 const navItems = document.querySelectorAll('[data-view]');
 const views = document.querySelectorAll('.view');
@@ -22,33 +15,51 @@ const viewLabels = {
     'industry-trends': 'Industry trends'
 };
 const API_BASE = window.location.port === '8002' ? '' : 'http://localhost:8002';
-let selectedCareer = 'Artificial Intelligence';
+let selectedCareer = 'Artificial Intelligence Engineer';
 let selectedCareerMatch = null;
-let careerRecords = careers.map(([name, description, match, color, symbol, domain, salary]) => ({
-    name,
-    description,
-    fit_score: Number.parseInt(match, 10),
-    color,
-    symbol,
-    domain,
-    salary_range: salary,
-    education_duration: '4 years'
-}));
+let careerRecords = [];
 let savedCareerIds = new Set();
 
-async function apiRequest(path, options = {}) {
-    const headers = {...options.headers };
+async function apiRequest(path, options = {}, _retried = false) {
+    const headers = { ...options.headers };
     const token = localStorage.getItem('careerCompassAccessToken');
     if (token) headers.Authorization = `Bearer ${token}`;
     if (options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
 
-    const response = await fetch(`${API_BASE}${path}`, {...options, headers });
+    let response;
+    try {
+        response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+    } catch (networkError) {
+        if (!_retried) return apiRequest(path, options, true);
+        throw new Error('Network error — check your connection and try again.');
+    }
+
     const result = response.status === 204 ? null : await response.json().catch(() => ({}));
-    if (!response.ok) {
-        if (response.status === 401 && token) {
-            localStorage.removeItem('careerCompassAccessToken');
-            savedCareerIds = new Set();
+
+    if (response.status === 401 && token && !_retried) {
+        // Try to refresh the access token
+        const refreshToken = localStorage.getItem('careerCompassRefreshToken');
+        if (refreshToken) {
+            try {
+                const refreshResult = await fetch(`${API_BASE}/auth/refresh`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ refresh_token: refreshToken }),
+                });
+                if (refreshResult.ok) {
+                    const refreshData = await refreshResult.json();
+                    localStorage.setItem('careerCompassAccessToken', refreshData.access_token);
+                    localStorage.setItem('careerCompassRefreshToken', refreshData.refresh_token);
+                    return apiRequest(path, options, true);
+                }
+            } catch {}
         }
+        // Refresh failed — sign out silently
+        performLogout(false);
+        throw new Error('Your session has expired. Please sign in again.');
+    }
+
+    if (!response.ok) {
         throw new Error((result && result.detail) || `Request failed (${response.status}).`);
     }
     return result;
@@ -244,6 +255,86 @@ const careerRoadmaps = {
             { step: 'NEXT · 3–9 MONTHS', title: 'Work with environmental evidence', description: 'Practise using public datasets, field notes, maps, and scientific sources to describe a local issue.', skills: ['Field methods', 'Data', 'GIS'] },
             { step: 'THEN · 9–18 MONTHS', title: 'Focus on an environmental area', description: 'Explore conservation, climate, water, environmental assessment, or sustainability research.', skills: ['Conservation', 'Climate', 'Research'] }
         ]
+    },
+    'Doctor (MBBS)': {
+        match: '85%',
+        symbol: '✚',
+        color: 'green',
+        summary: 'Prepare for NEET-UG, complete the 5.5-year MBBS curriculum, and undergo compulsory rotatory clinical internship.',
+        overview: 'Medicine involves clinical diagnosis, patient care, pathology, pharmacology, surgery, and preventive public health in hospital and community environments.',
+        duration: '5.5 years (4.5 academic years + 1-year mandatory rotatory internship)',
+        bestCourses: ['MBBS (Bachelor of Medicine, Bachelor of Surgery)', 'BDS (Dental Surgery)', 'BAMS / BHMS (Ayurveda/Homeopathy)', 'MD / MS (Postgraduate Specialization)'],
+        examFocus: ['NEET-UG (National Eligibility cum Entrance Test)', 'Biology / Zoology / Botany', 'Chemistry', 'Physics'],
+        jobs: ['Medical Officer', 'Junior Resident', 'Physician', 'Specialist Doctor (post-MD/MS)', 'Public Health Administrator'],
+        skillAreas: ['Clinical diagnosis', 'Patient communication', 'Pharmacology', 'Emergency medical care', 'Medical ethics & empathy'],
+        firstSteps: ['Master NCERT Biology and Chemistry Class 11-12 line-by-line', 'Solve timed previous-year NEET mock tests', 'Understand hospital workflows and volunteer in community health camps'],
+        entryPreparation: ['Mandatory NEET-UG qualification with minimum 50th percentile (40th for reserved categories)', 'Participate in KEA state and MCC All India Quota counselling', 'Confirm National Medical Commission (NMC) recognition of prospective colleges'],
+        practiceProjects: ['Organize a community first-aid and hygiene awareness drive', 'Document comparative pathology case studies from public open journals', 'Shadow a practicing clinician during community health consultations'],
+        phases: [
+            { step: 'NOW · CLASS 11-12', title: 'NEET-UG Mastery', description: 'Deep study of NCERT Biology, Physics, and Chemistry with rigorous daily numerical and diagram practice.', skills: ['Biology', 'Chemistry', 'Physics', 'Time management'] },
+            { step: 'YEARS 1–4.5', title: 'Pre-clinical, Para-clinical & Clinical Training', description: 'Anatomy, Physiology, Biochemistry, Pathology, Microbiology, Pharmacology, Medicine, Surgery, OB-GYN and Pediatrics.', skills: ['Anatomy', 'Pathology', 'Pharmacology', 'Clinical skills'] },
+            { step: 'YEAR 5.5 & BEYOND', title: 'Compulsory Rotatory Internship & PG Prep', description: 'Hands-on clinical rotations across Casualty, Medicine, Surgery, Rural Health Centers, followed by NEXT / NEET-PG for specialization.', skills: ['Patient care', 'Emergency response', 'Clinical decision making'] }
+        ]
+    },
+    'Chartered Accountant (CA)': {
+        match: '82%',
+        symbol: '₹',
+        color: 'orange',
+        summary: 'Progress through ICAI CA Foundation, Intermediate, 2 years of mandatory Articleship, and the CA Final examination.',
+        overview: 'Chartered Accountancy is the benchmark qualification in auditing, taxation, corporate financial management, and statutory reporting under ICAI.',
+        duration: '4–5 years under the Institute of Chartered Accountants of India (ICAI)',
+        bestCourses: ['ICAI CA Program', 'B.Com / BBA concurrent with CA', 'CPA / CFA (post-qualification)'],
+        examFocus: ['ICAI Foundation', 'ICAI Intermediate (Group 1 & 2)', 'ICAI Final', 'Corporate Law & Taxation'],
+        jobs: ['Statutory Auditor', 'Tax Consultant', 'Financial Controller', 'Chief Financial Officer (CFO)', 'Forensic Accountant'],
+        skillAreas: ['Financial reporting & Ind AS', 'Direct & Indirect taxation', 'Auditing standards', 'Corporate law', 'Excel & financial modeling'],
+        firstSteps: ['Register for ICAI Foundation after Class 10/12', 'Master double-entry bookkeeping and accounting principles', 'Follow Union Budget, MCA circulars and GST regulatory updates'],
+        entryPreparation: ['Pass Class 12 in any stream (Commerce or Mathematics preferred)', 'Register with ICAI 4 months before your intended exam session', 'Familiarize with ICAI study material and suggested answers'],
+        practiceProjects: ['Prepare a model company balance sheet and cash flow analysis', 'Compute tax liabilities under old and new income tax regimes for a sample business', 'Simulate an internal audit checklist for an SME business'],
+        phases: [
+            { step: 'STAGE 1 · FOUNDATION', title: 'ICAI Foundation Examination', description: 'Clear 4 papers: Accounting, Business Laws, Quantitative Aptitude, and Business Economics.', skills: ['Accounting', 'Business law', 'Quantitative aptitude'] },
+            { step: 'STAGE 2 · INTERMEDIATE & ARTICLESHIP', title: 'Intermediate Exams & 2-Year Articleship', description: 'Clear Group 1 & 2 exams, complete ICITSS training, and begin 2 years of rigorous practical training under a practicing CA.', skills: ['Auditing', 'Taxation', 'Financial management', 'Client audits'] },
+            { step: 'STAGE 3 · FINAL & MEMBERSHIP', title: 'CA Final & ICAI Membership', description: 'Pass CA Final examinations, complete AICITSS, and enroll with ICAI as an Associate Chartered Accountant (ACA).', skills: ['Advanced auditing', 'Strategic financial management', 'Ethics'] }
+        ]
+    },
+    'Lawyer (Advocate)': {
+        match: '78%',
+        symbol: '§',
+        color: 'purple',
+        summary: 'Complete a 5-year integrated B.A. LL.B. / B.B.A. LL.B. or 3-year LL.B., and clear the All India Bar Examination (AIBE).',
+        overview: 'Advocates interpret statutory law, protect rights, draft contracts, counsel corporations, and represent clients in courts and arbitration tribunals.',
+        duration: '5 years after Class 12 or 3 years after any bachelor degree',
+        bestCourses: ['B.A. LL.B. (Hons)', 'B.B.A. LL.B. (Hons)', '3-Year LL.B.', 'LL.M. for specialization'],
+        examFocus: ['CLAT (Common Law Admission Test)', 'AILET (NLU Delhi)', 'LSAT India', 'State Law CETs'],
+        jobs: ['Litigation Advocate', 'Corporate In-house Counsel', 'Judicial Magistrate / Judge', 'Arbitration Consultant'],
+        skillAreas: ['Legal research', 'Oral advocacy & Mooting', 'Drafting & Conveyancing', 'Constitutional law', 'Critical reasoning'],
+        firstSteps: ['Read landmark Supreme Court judgments in summary form', 'Participate in school debates and mock parliament', 'Prepare for CLAT reading comprehension and legal reasoning'],
+        entryPreparation: ['Class 12 with at least 45% marks from any recognized board', 'Consistent practice of CLAT passage-based legal reasoning and current affairs', 'Verify Bar Council of India (BCI) recognition of target law schools'],
+        practiceProjects: ['Draft a model client contract and non-disclosure agreement', 'Participate in collegiate moot court or client counseling competitions', 'Intern with a district court advocate or legal aid clinic during semester breaks'],
+        phases: [
+            { step: 'NOW · CLASS 11-12', title: 'CLAT / Law Entrance Prep', description: 'Master legal reasoning, reading comprehension, current affairs, and logical reasoning.', skills: ['Critical reading', 'Legal awareness', 'Logical deduction'] },
+            { step: 'YEARS 1–3', title: 'Foundational Law & Moot Courts', description: 'Constitutional law, contracts, criminal law (BNS), torts, and legal drafting paired with active moot court participation.', skills: ['Legal research', 'Case briefs', 'Statutory interpretation'] },
+            { step: 'YEARS 4–5 & BAR', title: 'Corporate Specialization, Internships & AIBE', description: 'Internships at law firms, judicial clerkships, followed by State Bar Council enrollment and clearing the AIBE.', skills: ['Advocacy', 'Contract drafting', 'Courtroom etiquette'] }
+        ]
+    },
+    'Civil Engineer': {
+        match: '76%',
+        symbol: '⌘',
+        color: 'blue',
+        summary: 'Complete B.Tech in Civil Engineering, master structural design software, and lead infrastructure development projects.',
+        overview: 'Civil Engineers plan, design and construct residential buildings, bridges, transport highways, dams, and urban environmental infrastructure.',
+        duration: '4 years for B.E. / B.Tech',
+        bestCourses: ['B.E. / B.Tech in Civil Engineering', 'M.Tech in Structural / Geotechnical Engineering', 'Diploma in Civil Engineering'],
+        examFocus: ['KCET / JEE Main', 'GATE (for PSUs and M.Tech)', 'AutoCAD & STAAD.Pro'],
+        jobs: ['Site Engineer', 'Structural Design Engineer', 'Project Manager', 'Quantity Surveyor', 'Government PWD Engineer'],
+        skillAreas: ['Structural analysis', 'AutoCAD', 'Surveying & GIS', 'Concrete technology', 'Estimation & Costing'],
+        firstSteps: ['Focus on Class 12 Physics (Mechanics) and Mathematics', 'Learn basic AutoCAD 2D drafting online', 'Inspect local infrastructure and construction blueprints'],
+        entryPreparation: ['Class 12 PCM with minimum 45-50%', 'Appear for state engineering entrance (KCET) or JEE Main', 'Review AICTE approved engineering institutions'],
+        practiceProjects: ['Model a 2-storey residential frame in AutoCAD/STAAD.Pro', 'Calculate material estimation and BOQ (Bill of Quantities) for a small construction', 'Conduct a soil bearing and water drainage survey in your neighborhood'],
+        phases: [
+            { step: 'NOW · 0–6 MONTHS', title: 'Engineering Entrance & Math Prep', description: 'Strengthen mechanics, trigonometry, calculus, and spatial aptitude for engineering entrance exams.', skills: ['Physics', 'Mathematics', 'Engineering mechanics'] },
+            { step: 'YEARS 1–3', title: 'Core Structural & Surveying Education', description: 'Mechanics of solids, fluid mechanics, surveying, soil mechanics, concrete technology, and CAD software training.', skills: ['Surveying', 'STAAD.Pro', 'AutoCAD', 'Structural analysis'] },
+            { step: 'YEAR 4 & CAREER', title: 'On-site Internships & GATE / Placement', description: 'On-site construction supervision internships, capstone project, and preparation for GATE / PSU / PWD recruitment or structural design firms.', skills: ['Site management', 'BOQ estimation', 'Safety regulations'] }
+        ]
     }
 };
 
@@ -252,7 +343,18 @@ const careerRoadmapAliases = {
     'Data Scientist': 'Data Science',
     'Cybersecurity Analyst': 'Cybersecurity',
     'Product Designer': 'Product Design',
-    'Biotechnology Researcher': 'Biotechnology'
+    'Product Designer (UX/UI)': 'Product Design',
+    'Biotechnology Researcher': 'Biotechnology',
+    'Doctor': 'Doctor (MBBS)',
+    'MBBS': 'Doctor (MBBS)',
+    'Chartered Accountant': 'Chartered Accountant (CA)',
+    'CA': 'Chartered Accountant (CA)',
+    'Lawyer': 'Lawyer (Advocate)',
+    'Advocate': 'Lawyer (Advocate)',
+    'Mechanical Engineer': 'Civil Engineer',
+    'Electrical Engineer': 'Civil Engineer',
+    'Cloud Engineer': 'Software Developer',
+    'Machine Learning Engineer': 'Artificial Intelligence'
 };
 
 const educationPathways = {
@@ -531,8 +633,69 @@ const careerResources = {
 
 function renderRoadmap(careerName = selectedCareer) {
     const roadmapKey = careerRoadmaps[careerName] ? careerName : careerRoadmapAliases[careerName] || careerName;
-    const roadmap = careerRoadmaps[roadmapKey] || careerRoadmaps['Artificial Intelligence'];
-    const resources = careerResources[roadmapKey] || [];
+    let roadmap = careerRoadmaps[roadmapKey];
+    let resources = careerResources[roadmapKey] || [];
+
+    if (!roadmap) {
+        const found = careerRecords.find(c => c.name === careerName) || {};
+        const domain = found.domain || 'Career';
+        const color = domain === 'Business' ? 'orange' : domain === 'Healthcare' || domain === 'Design' || domain === 'Science' || domain === 'Agriculture' ? 'green' : 'blue';
+        const symbol = domain === 'Business' ? '₹' : domain === 'Healthcare' ? '✚' : domain === 'Agriculture' || domain === 'Science' ? '◌' : domain === 'Design' ? '✦' : '⌘';
+        let reqSkills = [];
+        try {
+            reqSkills = Object.keys(typeof found.required_skills === 'string' ? JSON.parse(found.required_skills || '{}') : (found.required_skills || {}));
+        } catch {}
+        if (!reqSkills.length) reqSkills = ['Problem solving', 'Domain knowledge', 'Communication'];
+
+        roadmap = {
+            match: `${found.market_demand || 80}% DEMAND`,
+            symbol: symbol,
+            color: color,
+            summary: found.description || `Build a structured and practical path toward a career in ${careerName}.`,
+            overview: `${careerName} is an impactful profession in ${domain}. ${found.description || ''}`,
+            duration: found.education_duration || '3–4 years',
+            bestCourses: [found.eligibility || 'Relevant Bachelor degree', 'Certified specializations', 'Applied internships'],
+            examFocus: ['Core subject mastery', 'Analytical reasoning', 'Entrance examination syllabus'],
+            jobs: [`Junior ${careerName}`, `${careerName}`, `Senior ${careerName}`, 'Consultant / Lead'],
+            skillAreas: reqSkills,
+            firstSteps: [
+                `Review eligibility & entrance requirements (${found.eligibility || 'Check college notices'})`,
+                'Strengthen prerequisite foundational subjects',
+                'Engage in hands-on practice projects or certified foundational courses'
+            ],
+            entryPreparation: [
+                'Review institution-specific eligibility and cutoffs',
+                'Prepare a consistent study schedule',
+                'Build domain-specific practical skills'
+            ],
+            practiceProjects: [
+                `Complete 1 practical project or case study relevant to ${careerName}`,
+                'Analyze real-world problem statements and industry reports',
+                'Document your learning and build a portfolio'
+            ],
+            phases: [
+                {
+                    step: 'NOW · 0–6 MONTHS',
+                    title: 'Foundation & Entrance Preparation',
+                    description: `Focus on prerequisite subjects, entrance exam syllabus, and foundational concepts for ${careerName}.`,
+                    skills: reqSkills.slice(0, 3)
+                },
+                {
+                    step: 'NEXT · 1–3 YEARS',
+                    title: 'Formal Degree & Practical Skill Building',
+                    description: `Pursue ${found.education_duration || 'degree studies'} with hands-on lab work, projects, and active participation in competitions or workshops.`,
+                    skills: reqSkills.slice(2, 5).length ? reqSkills.slice(2, 5) : reqSkills
+                },
+                {
+                    step: 'THEN · FINAL YEAR & BEYOND',
+                    title: 'Internships, Licensing & Career Launch',
+                    description: `Complete required internships, licensing examinations or certifications to transition into professional practice. Typical starting compensation: ${found.salary_range || 'Competitive'}.`,
+                    skills: ['Professional practice', 'Industry networking', 'Continuous learning']
+                }
+            ]
+        };
+    }
+
     const roadmapPanel = document.querySelector('.roadmap-panel');
     const intro = document.querySelector('#roadmap .subhead');
     const title = document.querySelector('#roadmap h1');
@@ -1007,20 +1170,42 @@ function applyProfileToForm(profile) {
 applyProfileToForm(savedStudentProfile);
 
 function updateStudentSummary(profile) {
-    const profileName = document.querySelector('.profile-mini strong');
-    const profileDetails = document.querySelector('.profile-mini div:nth-child(2) span');
-    const avatar = document.querySelector('.profile-mini .avatar');
-    const fullName = profile.fullName || profile.full_name;
-    const standard = profile.standard || profile.educationLevel || profile.education_level;
-    if (fullName) {
-        profileName.textContent = fullName;
-        avatar.textContent = fullName.split(/\s+/).filter(Boolean).slice(0, 2).map(name => name[0]).join('').toUpperCase();
+    const profileName = document.querySelector('#sidebar-name');
+    const profileDetails = document.querySelector('#sidebar-details');
+    const sidebarAvatar = document.querySelector('#sidebar-avatar');
+    const topbarAvatar = document.querySelector('#topbar-avatar');
+    const overviewName = document.querySelector('#overview-name');
+    const logoutButton = document.querySelector('#logout-button');
+    const greetingEl = document.querySelector('[data-dynamic-greeting]');
+
+    const fullName = profile.fullName || profile.full_name || profile.name || '';
+    const standard = profile.standard || profile.educationLevel || profile.education_level || '';
+    const stream = profile.stream || '';
+
+    const initials = fullName
+        ? fullName.split(/\s+/).filter(Boolean).slice(0, 2).map(n => n[0]).join('').toUpperCase()
+        : '?';
+
+    if (profileName) profileName.textContent = fullName || 'Guest';
+    if (profileDetails) profileDetails.textContent = fullName
+        ? [standard, stream].filter(Boolean).join(' · ') || 'Profile'
+        : 'Sign in to continue';
+    if (sidebarAvatar) sidebarAvatar.textContent = initials;
+    if (topbarAvatar) topbarAvatar.textContent = initials;
+    if (overviewName) overviewName.textContent = fullName ? fullName.split(' ')[0] : 'there';
+    if (greetingEl) {
+        const prefix = greetingEl.dataset.greetingPrefix || 'Good morning';
+        const firstName = fullName ? fullName.split(' ')[0] : 'there';
+        greetingEl.innerHTML = `${prefix}, <span id="overview-name">${escapeHTML(firstName)}</span><span class="accent">.</span>`;
     }
-    if (standard || profile.stream) profileDetails.textContent = [standard, profile.stream].filter(Boolean).join(' · ');
-    const completionFields = [fullName, standard, profile.stream, profile.board, profile.institution, profile.subjects, profile.careerGoal];
-    const completedFields = completionFields.filter(value => Array.isArray(value) ? value.length > 0 : Boolean(value)).length;
+    if (logoutButton) logoutButton.hidden = !fullName;
+
+    const completionFields = [fullName, standard, stream, profile.board, profile.institution, profile.subjects, profile.careerGoal];
+    const completedCount = completionFields.filter(v => Array.isArray(v) ? v.length > 0 : Boolean(v)).length;
     const completionStat = document.querySelector('#profile-completion-stat');
-    if (completionStat) completionStat.textContent = `${Math.round(completedFields / completionFields.length * 100)}%`;
+    if (completionStat) completionStat.textContent = `${Math.round(completedCount / completionFields.length * 100)}%`;
+    const progressBar = completionStat?.closest('.stat-card')?.querySelector('.progress i');
+    if (progressBar) progressBar.style.width = `${Math.round(completedCount / completionFields.length * 100)}%`;
 }
 
 updateStudentSummary(savedStudentProfile);
@@ -1068,10 +1253,17 @@ document.querySelectorAll('[data-auth-mode]').forEach(button => button.addEventL
 }));
 
 async function loadCareerCatalog() {
+    // Show loading skeletons while fetching
+    if (exploreGrid) {
+        exploreGrid.innerHTML = Array(6).fill('<div class="career-skeleton"></div>').join('');
+    }
     try {
         careerRecords = await apiRequest('/careers');
         renderCareerCards(exploreGrid, careerRecords);
     } catch (error) {
+        if (exploreGrid) {
+            exploreGrid.innerHTML = `<div class="api-error-state"><strong>Could not load careers</strong>${escapeHTML(error.message)}</div>`;
+        }
         console.warn('Career catalog could not be loaded:', error.message);
     }
 }
@@ -1101,6 +1293,7 @@ studentLoginForm.addEventListener('submit', async event => {
             body: JSON.stringify(credentials)
         });
         localStorage.setItem('careerCompassAccessToken', result.access_token);
+        if (result.refresh_token) localStorage.setItem('careerCompassRefreshToken', result.refresh_token);
         studentProfileForm.elements.email.value = result.user.email;
         await loadAuthenticatedData();
         loginMessage.textContent = `Welcome back, ${result.user.name}.`;
@@ -1128,6 +1321,7 @@ studentRegisterForm.addEventListener('submit', async event => {
             body: JSON.stringify({ name: registration.name, email: registration.email, password: registration.password })
         });
         localStorage.setItem('careerCompassAccessToken', result.access_token);
+        if (result.refresh_token) localStorage.setItem('careerCompassRefreshToken', result.refresh_token);
         await apiRequest('/profile', {
             method: 'PUT',
             body: JSON.stringify({ fullName: registration.name, educationLevel: registration.education_level, stream: registration.stream })
@@ -1145,6 +1339,21 @@ studentRegisterForm.addEventListener('submit', async event => {
 });
 
 async function initializeApp() {
+    // Set dynamic date and greeting on overview
+    const dateEl = document.querySelector('.kicker[data-dynamic-date]');
+    const greetingEl = document.querySelector('h1[data-dynamic-greeting]');
+    if (dateEl) {
+        const now = new Date();
+        const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+        const months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+        dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    }
+    if (greetingEl) {
+        const hour = new Date().getHours();
+        const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+        greetingEl.dataset.greetingPrefix = greeting;
+    }
+
     await loadCareerCatalog();
     if (localStorage.getItem('careerCompassAccessToken')) {
         try {
@@ -1158,7 +1367,123 @@ async function initializeApp() {
     }
 }
 
+function performLogout(notify = true) {
+    const refreshToken = localStorage.getItem('careerCompassRefreshToken');
+    if (refreshToken) {
+        // Fire-and-forget — don't block UI
+        fetch(`${API_BASE}/auth/logout`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ refresh_token: refreshToken }),
+        }).catch(() => {});
+    }
+    localStorage.removeItem('careerCompassAccessToken');
+    localStorage.removeItem('careerCompassRefreshToken');
+    savedCareerIds = new Set();
+    // Reset UI
+    updateStudentSummary({});
+    renderCareerCards(recommendationGrid, [], false);
+    renderSavedCareers([]);
+    const savedCountEl = document.querySelector('#saved-career-count');
+    const navCountEl = document.querySelector('#nav-saved-career-count');
+    if (savedCountEl) savedCountEl.textContent = '0';
+    if (navCountEl) navCountEl.textContent = '0';
+    if (notify) {
+        showToast('You have been signed out.');
+        showView('student-login');
+    }
+}
+
 void initializeApp();
+
+// Wire up logout button
+const logoutButtonEl = document.querySelector('#logout-button');
+if (logoutButtonEl) {
+    logoutButtonEl.addEventListener('click', () => performLogout(true));
+}
+
+// Set dynamic date immediately on load
+(function setDynamicDate() {
+    const dateEl = document.querySelector('[data-dynamic-date]');
+    if (!dateEl) return;
+    const now = new Date();
+    const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+    const months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+    dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    const hour = now.getHours();
+    const prefix = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+    const greetingEl = document.querySelector('[data-dynamic-greeting]');
+    if (greetingEl) {
+        greetingEl.dataset.greetingPrefix = prefix;
+        greetingEl.innerHTML = `${prefix}, <span id="overview-name">there</span><span class="accent">.</span>`;
+    }
+}());
+
+// Wire up Ask Compass AI Chat Modal
+const helpButtonEl = document.querySelector('.help-button');
+const chatModalEl = document.querySelector('#chat-modal');
+const closeChatEl = document.querySelector('#close-chat');
+const chatFormEl = document.querySelector('#chat-form');
+const chatInputEl = document.querySelector('#chat-input');
+const chatMessagesEl = document.querySelector('#chat-messages');
+
+if (helpButtonEl && chatModalEl) {
+    helpButtonEl.addEventListener('click', () => {
+        chatModalEl.hidden = false;
+        if (chatInputEl) chatInputEl.focus();
+    });
+}
+
+if (closeChatEl && chatModalEl) {
+    closeChatEl.addEventListener('click', () => {
+        chatModalEl.hidden = true;
+    });
+}
+
+if (chatModalEl) {
+    chatModalEl.addEventListener('click', event => {
+        if (event.target === chatModalEl) {
+            chatModalEl.hidden = true;
+        }
+    });
+}
+
+if (chatFormEl && chatInputEl && chatMessagesEl) {
+    chatFormEl.addEventListener('submit', async event => {
+        event.preventDefault();
+        const question = chatInputEl.value.trim();
+        if (!question) return;
+
+        // Append user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-msg user';
+        userMsg.innerHTML = `<p>${escapeHTML(question)}</p>`;
+        chatMessagesEl.appendChild(userMsg);
+        chatInputEl.value = '';
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+
+        // Typing indicator / placeholder
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-msg bot';
+        botMsg.innerHTML = '<p><em>Thinking...</em></p>';
+        chatMessagesEl.appendChild(botMsg);
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+
+        try {
+            const response = await apiRequest('/chat', {
+                method: 'POST',
+                body: JSON.stringify({ question })
+            });
+            botMsg.innerHTML = `
+                <p>${escapeHTML(response.answer)}</p>
+                ${response.disclaimer ? `<p class="chat-disclaimer">${escapeHTML(response.disclaimer)}</p>` : ''}
+            `;
+        } catch (error) {
+            botMsg.innerHTML = `<p style="color:var(--coral);">Unable to get an answer right now: ${escapeHTML(error.message)}</p>`;
+        }
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+    });
+}
 
 function showToast(message) {
     const toast = document.querySelector('#toast');
